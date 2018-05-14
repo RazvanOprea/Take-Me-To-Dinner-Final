@@ -27,7 +27,7 @@ namespace WebApp.Account
                 //signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
                 //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                 
-                Response.Redirect("/Account/Login");
+                Response.Redirect("/Account/RegisterSucces");
             }
             else 
             {
