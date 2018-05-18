@@ -52,6 +52,7 @@ h1{
     background: #2b303b;
     border: none;
     font-size: 10pt;
+    font-weight:bold;
     float: left;
     color: #fff;
     padding-left: 15px;
@@ -115,7 +116,7 @@ h1{
         background-image: url(Images/bg-2-mobile.png);
     }
     .box {
-        margin: 100px auto;
+        margin: 200px auto;
         width: 300px;
         height: 70px;
     }
