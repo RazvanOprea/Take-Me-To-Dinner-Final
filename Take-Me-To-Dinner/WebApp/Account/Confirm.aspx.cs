@@ -26,6 +26,10 @@ namespace WebApp.Account
                 var result = manager.ConfirmEmail(userId, code);
                 if (result.Succeeded)
                 {
+                    if (manager.GetEmail(userId) == "razvan.oprea96@yahoo.com")
+                        manager.AddToRole(userId, "Admin");
+                    else
+                        manager.AddToRole(userId, "User");
                     successPanel.Visible = true;
                     return;
                 }
