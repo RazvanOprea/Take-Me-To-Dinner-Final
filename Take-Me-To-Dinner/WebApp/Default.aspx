@@ -1,29 +1,16 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebApp._Default" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <%--<link href="Content/landing-page.css" rel="stylesheet" type="text/css" />--%>
+<%@ Register Assembly="DevExpress.Web.v17.2, Version=17.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
 
-    <header class="masthead text-white text-center">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h1 class="mb-5">Build a landing page for your business or project and generate more leads!</h1>
-          </div>
-          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <form>
-              <div class="form-row">
-                <div class="col-12 col-md-9 mb-2 mb-md-0">
-                  <input type="text" name="search" class="form-control form-control-lg" placeholder="Search a reastaurant...">
-                </div>
-                <div class="col-12 col-md-3">
-                  <button type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
-                </div>
-              </div>
-            </form>
-          </div>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="Content/SearchPage.css" rel="stylesheet" />
+
+    <div class="box">
+        <div class="container-4">
+            <input type="search" id="search" placeholder="What are you looking for?" />
+            <button class="icon" type="submit"><i class="fa fa-search"></i></button>
         </div>
-      </div>
-    </header>
+    </div>
 
 </asp:Content>
