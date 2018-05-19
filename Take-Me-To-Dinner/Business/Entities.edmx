@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MyContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MostWantedPlaces">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPlace" Type="int" Nullable="false" />
+          <Property Name="UserVisitedCount" Type="int" />
+          <Property Name="UserSearchedCount" Type="int" />
+        </EntityType>
+        <EntityType Name="Places">
+          <Key>
+            <PropertyRef Name="IdPlace" />
+          </Key>
+          <Property Name="IdPlace" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Website" Type="nvarchar" MaxLength="200" />
+          <Property Name="Rating" Type="float" />
+          <Property Name="RatingVotes" Type="int" />
+          <Property Name="Lat" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Long" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="GoogleMapLink" Type="nvarchar(max)" />
+          <Property Name="OpenTime" Type="time" Precision="3" />
+          <Property Name="CloseTime" Type="time" Precision="3" />
+          <Property Name="Confirmed" Type="bit" />
+          <Property Name="IdPartner" Type="nvarchar" MaxLength="128" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="PlacesPhotos">
+          <Key>
+            <PropertyRef Name="IdPhoto" />
+          </Key>
+          <Property Name="IdPhoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPlace" Type="int" Nullable="false" />
+          <Property Name="PhotoPath" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlacesTypes">
+          <Key>
+            <PropertyRef Name="IdPlaceType" />
+          </Key>
+          <Property Name="IdPlaceType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserSearchHistory">
+          <Key>
+            <PropertyRef Name="IdSearch" />
+          </Key>
+          <Property Name="IdSearch" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IdPlace" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_MostWantedPlaces_Places">
+          <End Role="Places" Type="Self.Places" Multiplicity="1" />
+          <End Role="MostWantedPlaces" Type="Self.MostWantedPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="IdPlace" />
+            </Principal>
+            <Dependent Role="MostWantedPlaces">
+              <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Places_PlacesTypes">
+          <End Role="PlacesTypes" Type="Self.PlacesTypes" Multiplicity="1" />
+          <End Role="Places" Type="Self.Places" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlacesTypes">
+              <PropertyRef Name="IdPlaceType" />
+            </Principal>
+            <Dependent Role="Places">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlacesPhotos_Places">
+          <End Role="Places" Type="Self.Places" Multiplicity="1" />
+          <End Role="PlacesPhotos" Type="Self.PlacesPhotos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="IdPlace" />
+            </Principal>
+            <Dependent Role="PlacesPhotos">
+              <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSearchHistory_Places">
+          <End Role="Places" Type="Self.Places" Multiplicity="1" />
+          <End Role="UserSearchHistory" Type="Self.UserSearchHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="IdPlace" />
+            </Principal>
+            <Dependent Role="UserSearchHistory">
+              <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyContextStoreContainer">
+          <EntitySet Name="MostWantedPlaces" EntityType="Self.MostWantedPlaces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlacesPhotos" EntityType="Self.PlacesPhotos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlacesTypes" EntityType="Self.PlacesTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSearchHistory" EntityType="Self.UserSearchHistory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MostWantedPlaces_Places" Association="Self.FK_MostWantedPlaces_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="MostWantedPlaces" EntitySet="MostWantedPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Places_PlacesTypes" Association="Self.FK_Places_PlacesTypes">
+            <End Role="PlacesTypes" EntitySet="PlacesTypes" />
+            <End Role="Places" EntitySet="Places" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlacesPhotos_Places" Association="Self.FK_PlacesPhotos_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="PlacesPhotos" EntitySet="PlacesPhotos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSearchHistory_Places" Association="Self.FK_UserSearchHistory_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="UserSearchHistory" EntitySet="UserSearchHistory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MostWantedPlace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPlace" Type="Int32" Nullable="false" />
+          <Property Name="UserVisitedCount" Type="Int32" />
+          <Property Name="UserSearchedCount" Type="Int32" />
+          <NavigationProperty Name="Place" Relationship="Self.FK_MostWantedPlaces_Places" FromRole="MostWantedPlaces" ToRole="Places" />
+        </EntityType>
+        <EntityType Name="Place">
+          <Key>
+            <PropertyRef Name="IdPlace" />
+          </Key>
+          <Property Name="IdPlace" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdType" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Double" />
+          <Property Name="RatingVotes" Type="Int32" />
+          <Property Name="Lat" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Long" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GoogleMapLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OpenTime" Type="Time" Precision="3" />
+          <Property Name="CloseTime" Type="Time" Precision="3" />
+          <Property Name="Confirmed" Type="Boolean" />
+          <Property Name="IdPartner" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MostWantedPlaces" Relationship="Self.FK_MostWantedPlaces_Places" FromRole="Places" ToRole="MostWantedPlaces" />
+          <NavigationProperty Name="PlacesType" Relationship="Self.FK_Places_PlacesTypes" FromRole="Places" ToRole="PlacesTypes" />
+          <NavigationProperty Name="PlacesPhotos" Relationship="Self.FK_PlacesPhotos_Places" FromRole="Places" ToRole="PlacesPhotos" />
+          <NavigationProperty Name="UserSearchHistories" Relationship="Self.FK_UserSearchHistory_Places" FromRole="Places" ToRole="UserSearchHistory" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PlacesPhoto">
+          <Key>
+            <PropertyRef Name="IdPhoto" />
+          </Key>
+          <Property Name="IdPhoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPlace" Type="Int32" Nullable="false" />
+          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Place" Relationship="Self.FK_PlacesPhotos_Places" FromRole="PlacesPhotos" ToRole="Places" />
+        </EntityType>
+        <EntityType Name="PlacesType">
+          <Key>
+            <PropertyRef Name="IdPlaceType" />
+          </Key>
+          <Property Name="IdPlaceType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Places" Relationship="Self.FK_Places_PlacesTypes" FromRole="PlacesTypes" ToRole="Places" />
+        </EntityType>
+        <EntityType Name="UserSearchHistory">
+          <Key>
+            <PropertyRef Name="IdSearch" />
+          </Key>
+          <Property Name="IdSearch" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdPlace" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Place" Relationship="Self.FK_UserSearchHistory_Places" FromRole="UserSearchHistory" ToRole="Places" />
+        </EntityType>
+        <Association Name="FK_MostWantedPlaces_Places">
+          <End Role="Places" Type="Self.Place" Multiplicity="1" />
+          <End Role="MostWantedPlaces" Type="Self.MostWantedPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="IdPlace" />
+            </Principal>
+            <Dependent Role="MostWantedPlaces">
+              <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Places_PlacesTypes">
+          <End Role="PlacesTypes" Type="Self.PlacesType" Multiplicity="1" />
+          <End Role="Places" Type="Self.Place" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PlacesTypes">
+              <PropertyRef Name="IdPlaceType" />
+            </Principal>
+            <Dependent Role="Places">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlacesPhotos_Places">
+          <End Role="Places" Type="Self.Place" Multiplicity="1" />
+          <End Role="PlacesPhotos" Type="Self.PlacesPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="IdPlace" />
+            </Principal>
+            <Dependent Role="PlacesPhotos">
+              <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSearchHistory_Places">
+          <End Role="Places" Type="Self.Place" Multiplicity="1" />
+          <End Role="UserSearchHistory" Type="Self.UserSearchHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="IdPlace" />
+            </Principal>
+            <Dependent Role="UserSearchHistory">
+              <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntitiesContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MostWantedPlaces" EntityType="Self.MostWantedPlace" />
+          <EntitySet Name="Places" EntityType="Self.Place" />
+          <EntitySet Name="PlacesPhotos" EntityType="Self.PlacesPhoto" />
+          <EntitySet Name="PlacesTypes" EntityType="Self.PlacesType" />
+          <EntitySet Name="UserSearchHistories" EntityType="Self.UserSearchHistory" />
+          <AssociationSet Name="FK_MostWantedPlaces_Places" Association="Self.FK_MostWantedPlaces_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="MostWantedPlaces" EntitySet="MostWantedPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Places_PlacesTypes" Association="Self.FK_Places_PlacesTypes">
+            <End Role="PlacesTypes" EntitySet="PlacesTypes" />
+            <End Role="Places" EntitySet="Places" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlacesPhotos_Places" Association="Self.FK_PlacesPhotos_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="PlacesPhotos" EntitySet="PlacesPhotos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSearchHistory_Places" Association="Self.FK_UserSearchHistory_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="UserSearchHistory" EntitySet="UserSearchHistories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyContextStoreContainer" CdmEntityContainer="EntitiesContext">
+          <EntitySetMapping Name="MostWantedPlaces">
+            <EntityTypeMapping TypeName="MyContext.MostWantedPlace">
+              <MappingFragment StoreEntitySet="MostWantedPlaces">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
+                <ScalarProperty Name="UserVisitedCount" ColumnName="UserVisitedCount" />
+                <ScalarProperty Name="UserSearchedCount" ColumnName="UserSearchedCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Places">
+            <EntityTypeMapping TypeName="MyContext.Place">
+              <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="RatingVotes" ColumnName="RatingVotes" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="GoogleMapLink" ColumnName="GoogleMapLink" />
+                <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+                <ScalarProperty Name="IdPartner" ColumnName="IdPartner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlacesPhotos">
+            <EntityTypeMapping TypeName="MyContext.PlacesPhoto">
+              <MappingFragment StoreEntitySet="PlacesPhotos">
+                <ScalarProperty Name="IdPhoto" ColumnName="IdPhoto" />
+                <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlacesTypes">
+            <EntityTypeMapping TypeName="MyContext.PlacesType">
+              <MappingFragment StoreEntitySet="PlacesTypes">
+                <ScalarProperty Name="IdPlaceType" ColumnName="IdPlaceType" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSearchHistories">
+            <EntityTypeMapping TypeName="MyContext.UserSearchHistory">
+              <MappingFragment StoreEntitySet="UserSearchHistory">
+                <ScalarProperty Name="IdSearch" ColumnName="IdSearch" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

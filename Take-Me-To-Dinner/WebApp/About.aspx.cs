@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Business.Managers;
 
 namespace WebApp
 {
@@ -11,7 +12,8 @@ namespace WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            grid.DataSource = new PlacesManager().GetAllPlaces();
+            grid.DataBind();
         }
     }
 }
