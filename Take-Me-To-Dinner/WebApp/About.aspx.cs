@@ -12,7 +12,7 @@ namespace WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            grid.DataSource = new PlacesManager().GetAllPlaces();
+            grid.DataSource = PlacesController.GetAllPlaces();
             grid.DataBind();
         }
     }

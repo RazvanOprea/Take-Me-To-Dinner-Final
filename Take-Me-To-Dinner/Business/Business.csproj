@@ -79,7 +79,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Managers\PlacesManager.cs" />
+    <Compile Include="Managers\PlacesController.cs" />
     <Compile Include="MostWantedPlace.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
