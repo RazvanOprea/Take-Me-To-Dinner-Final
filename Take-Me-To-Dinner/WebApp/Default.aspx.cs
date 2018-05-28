@@ -16,6 +16,10 @@ namespace WebApp
         {
             
         }
-        
+
+        protected void DropDownListPlaces_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("About.aspx?cityId=" + DropDownListPlaces.SelectedItem.Value);
+        }
     }
 }

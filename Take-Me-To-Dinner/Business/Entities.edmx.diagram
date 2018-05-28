@@ -14,6 +14,8 @@
         <AssociationConnector Association="MyContext.FK_Places_PlacesTypes" ManuallyRouted="false" />
         <AssociationConnector Association="MyContext.FK_PlacesPhotos_Places" ManuallyRouted="false" />
         <AssociationConnector Association="MyContext.FK_UserSearchHistory_Places" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyContext.City" Width="1.5" PointX="0.75" PointY="6.25" />
+        <AssociationConnector Association="MyContext.FK_Places_Cities" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

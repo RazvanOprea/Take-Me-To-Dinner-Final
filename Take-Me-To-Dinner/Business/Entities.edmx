@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MyContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="IdCity" />
+          </Key>
+          <Property Name="IdCity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="MostWantedPlaces">
           <Key>
             <PropertyRef Name="Id" />
@@ -20,6 +27,7 @@
           </Key>
           <Property Name="IdPlace" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="IdCity" Type="int" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Adress" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Telephone" Type="nvarchar" MaxLength="20" />
@@ -34,6 +42,7 @@
           <Property Name="Confirmed" Type="bit" />
           <Property Name="IdPartner" Type="nvarchar" MaxLength="128" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Photo" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="PlacesPhotos">
           <Key>
@@ -67,6 +76,18 @@
             </Principal>
             <Dependent Role="MostWantedPlaces">
               <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Places_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+          <End Role="Places" Type="Self.Places" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="Places">
+              <PropertyRef Name="IdCity" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -107,6 +128,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MyContextStoreContainer">
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MostWantedPlaces" EntityType="Self.MostWantedPlaces" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlacesPhotos" EntityType="Self.PlacesPhotos" Schema="dbo" store:Type="Tables" />
@@ -115,6 +137,10 @@
           <AssociationSet Name="FK_MostWantedPlaces_Places" Association="Self.FK_MostWantedPlaces_Places">
             <End Role="Places" EntitySet="Places" />
             <End Role="MostWantedPlaces" EntitySet="MostWantedPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Places_Cities" Association="Self.FK_Places_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Places" EntitySet="Places" />
           </AssociationSet>
           <AssociationSet Name="FK_Places_PlacesTypes" Association="Self.FK_Places_PlacesTypes">
             <End Role="PlacesTypes" EntitySet="PlacesTypes" />
@@ -167,6 +193,9 @@
           <NavigationProperty Name="PlacesPhotos" Relationship="Self.FK_PlacesPhotos_Places" FromRole="Places" ToRole="PlacesPhotos" />
           <NavigationProperty Name="UserSearchHistories" Relationship="Self.FK_UserSearchHistory_Places" FromRole="Places" ToRole="UserSearchHistory" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdCity" Type="Int32" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="City" Relationship="MyContext.FK_Places_Cities" FromRole="Place" ToRole="City" />
         </EntityType>
         <EntityType Name="PlacesPhoto">
           <Key>
@@ -264,7 +293,32 @@
             <End Role="Places" EntitySet="Places" />
             <End Role="UserSearchHistory" EntitySet="UserSearchHistories" />
           </AssociationSet>
+          <EntitySet Name="Cities" EntityType="MyContext.City" />
+          <AssociationSet Name="FK_Places_Cities" Association="MyContext.FK_Places_Cities">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Place" EntitySet="Places" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="IdCity" />
+          </Key>
+          <Property Name="IdCity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Places" Relationship="MyContext.FK_Places_Cities" FromRole="City" ToRole="Place" />
+        </EntityType>
+        <Association Name="FK_Places_Cities">
+          <End Type="MyContext.City" Role="City" Multiplicity="0..1" />
+          <End Type="MyContext.Place" Role="Place" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="Place">
+              <PropertyRef Name="IdCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -284,6 +338,8 @@
           <EntitySetMapping Name="Places">
             <EntityTypeMapping TypeName="MyContext.Place">
               <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
                 <ScalarProperty Name="IdType" ColumnName="IdType" />
@@ -326,6 +382,14 @@
                 <ScalarProperty Name="IdSearch" ColumnName="IdSearch" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="MyContext.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

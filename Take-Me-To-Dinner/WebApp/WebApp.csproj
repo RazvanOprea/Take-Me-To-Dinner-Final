@@ -209,6 +209,7 @@
     <Content Include="Content\Images\bg-2-mobile.png" />
     <Content Include="Content\Images\bg-2.png" />
     <Content Include="Content\Images\bg-3.jpg" />
+    <Content Include="Content\restaurants.css" />
     <Content Include="Content\SearchPage.css" />
     <Content Include="Content\Select\select2-bootstrap.css" />
     <Content Include="Content\Select\select2-spinner.gif" />

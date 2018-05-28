@@ -42,32 +42,12 @@ namespace Business.Managers
             }
         }
 
-        public static void UpdatePlace(Place updatedPlace)
+        public static List<Place> GetAllPlacesByCityId(int cityId)
         {
             using (var db = new EntitiesContext())
             {
-                var place = GetAllPlaces().Where(x => x.IdPlace == updatedPlace.IdPlace).SingleOrDefault();
-                if (place == null)
-                    return;
-                place.Adress = updatedPlace.Adress;
-                place.CloseTime = updatedPlace.CloseTime;
-                place.Confirmed = updatedPlace.Confirmed;
-                place.Description = updatedPlace.Description;
-                place.GoogleMapLink = updatedPlace.GoogleMapLink;
-                place.IdPartner = updatedPlace.IdPartner;
-                place.IdPlace = updatedPlace.IdPlace;
-                place.IdType = updatedPlace.IdType;
-                place.Lat = updatedPlace.Lat;
-                place.Long = updatedPlace.Long;
-                place.Name = updatedPlace.Name;
-                place.OpenTime = updatedPlace.OpenTime;
-                place.Rating = updatedPlace.Rating;
-                place.RatingVotes = updatedPlace.RatingVotes;
-                place.Telephone = updatedPlace.Telephone;
-                place.Website = updatedPlace.Website;
-                db.SaveChanges();
+                return db.Places.Where(x => x.IdCity == cityId).ToList();
             }
-                
         }
 
     }
