@@ -10,33 +10,24 @@
 namespace WebApp {
     
     
-    public partial class _Default {
+    public partial class ShowPlaces {
         
         /// <summary>
-        /// SearchComboBox control.
+        /// ResultsPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox SearchComboBox;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ResultsPanel;
         
         /// <summary>
-        /// ldsPlaces control.
+        /// SearchResultsDataView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource ldsPlaces;
-        
-        /// <summary>
-        /// ldsCities control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource ldsCities;
+        protected global::DevExpress.Web.ASPxDataView SearchResultsDataView;
     }
 }

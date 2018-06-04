@@ -14,8 +14,8 @@ namespace WebApp
         protected void Page_Load(object sender, EventArgs e)
         {
             string id = Request.QueryString["cityId"];
-            //grid.DataSource = PlacesController.GetAllPlacesByCityId(id);
-            grid.DataSource = PlacesController.GetAllPlaces();
+            //grid.DataSource = PlacesManager.GetAllPlacesByCityId(id);
+            grid.DataSource = PlacesManager.GetAllPlaces();
             grid.DataBind();
         }
     }

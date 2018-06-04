@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Business.Managers
 {
     [DataObject]
-    public class PlacesController
+    public class PlacesManager
     {
         public static List<Place> GetAllPlaces()
         {
