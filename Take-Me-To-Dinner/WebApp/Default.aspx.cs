@@ -17,9 +17,14 @@ namespace WebApp
             
         }
 
-        protected void SearchComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        //protected void SearchComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    Response.Redirect("About.aspx?cityId=" + SearchComboBox.SelectedItem.Value);
+        //}
+
+        protected void dropdownlistplaces_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Redirect("About.aspx?cityId=" + SearchComboBox.SelectedItem.Value);
+
         }
 
         //protected void DropDownListPlaces_SelectedIndexChanged(object sender, EventArgs e)

@@ -13,13 +13,13 @@ namespace WebApp {
     public partial class _Default {
         
         /// <summary>
-        /// SearchComboBox control.
+        /// ddlCities control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxComboBox SearchComboBox;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCities;
         
         /// <summary>
         /// ldsPlaces control.
