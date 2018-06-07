@@ -218,6 +218,7 @@
     <Content Include="Content\Select\select2.js" />
     <Content Include="Content\Select\select2.png" />
     <Content Include="Content\Select\select2x2.png" />
+    <Content Include="Content\Site-Contact.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site2.css" />
     <Content Include="Default.aspx" />
@@ -429,6 +430,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Places\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

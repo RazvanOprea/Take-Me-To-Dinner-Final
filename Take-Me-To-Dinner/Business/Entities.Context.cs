@@ -25,11 +25,11 @@ namespace Business
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<MostWantedPlace> MostWantedPlaces { get; set; }
         public virtual DbSet<Place> Places { get; set; }
         public virtual DbSet<PlacesPhoto> PlacesPhotos { get; set; }
         public virtual DbSet<PlacesType> PlacesTypes { get; set; }
         public virtual DbSet<UserSearchHistory> UserSearchHistories { get; set; }
-        public virtual DbSet<City> Cities { get; set; }
     }
 }

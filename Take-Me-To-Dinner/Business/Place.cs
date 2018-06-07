@@ -23,7 +23,8 @@ namespace Business
         }
     
         public int IdPlace { get; set; }
-        public int IdType { get; set; }
+        public string Type { get; set; }
+        public Nullable<int> IdCity { get; set; }
         public string Name { get; set; }
         public string Adress { get; set; }
         public string Telephone { get; set; }
@@ -38,16 +39,14 @@ namespace Business
         public Nullable<bool> Confirmed { get; set; }
         public string IdPartner { get; set; }
         public string Description { get; set; }
-        public Nullable<int> IdCity { get; set; }
         public string Photo { get; set; }
     
+        public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MostWantedPlace> MostWantedPlaces { get; set; }
-        public virtual PlacesType PlacesType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlacesPhoto> PlacesPhotos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserSearchHistory> UserSearchHistories { get; set; }
-        public virtual City City { get; set; }
     }
 }

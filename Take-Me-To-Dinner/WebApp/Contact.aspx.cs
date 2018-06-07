@@ -13,5 +13,10 @@ namespace WebApp
         {
 
         }
+
+        protected void odsPlaces_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            e.InputParameters["cityId"] = 1;
+        }
     }
 }

@@ -26,14 +26,6 @@ namespace Business.Managers
             }
         }
 
-        public static List<Place> GetAllPlacesByAPartner(string userId)
-        {
-            using (var db = new EntitiesContext())
-            {
-                return db.Places.Where(x => x.IdPartner == userId).OrderBy(x => x.Name).ToList();
-            }
-        }
-
         public static Place GetPlaceByID(int placeId)
         {
             using (var db = new EntitiesContext())

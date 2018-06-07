@@ -11,5 +11,23 @@ namespace WebApp {
     
     
     public partial class Contact {
+        
+        /// <summary>
+        /// lwPlaces control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lwPlaces;
+        
+        /// <summary>
+        /// odsPlaces control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsPlaces;
     }
 }
