@@ -209,6 +209,21 @@
     <Content Include="Content\Images\bg-2-mobile.png" />
     <Content Include="Content\Images\bg-2.png" />
     <Content Include="Content\Images\bg-3.jpg" />
+    <Content Include="Content\Images\Places\class_fast_food.png" />
+    <Content Include="Content\Images\Places\fenice_palas.png" />
+    <Content Include="Content\Images\Places\oscar.png" />
+    <Content Include="Content\Images\Places\vivo.png" />
+    <Content Include="Content\Images\Rating\Rating0.png" />
+    <Content Include="Content\Images\Rating\Rating1.png" />
+    <Content Include="Content\Images\Rating\Rating2.png" />
+    <Content Include="Content\Images\Rating\Rating3.png" />
+    <Content Include="Content\Images\Rating\Rating4.png" />
+    <Content Include="Content\Images\Rating\Rating5.png" />
+    <Content Include="Content\Images\Rating\Star_S_1.png" />
+    <Content Include="Content\Images\Rating\Star_S_2.png" />
+    <Content Include="Content\Images\Rating\Star_S_3.png" />
+    <Content Include="Content\Images\Rating\Star_S_4.png" />
+    <Content Include="Content\Images\Rating\Star_S_5.png" />
     <Content Include="Content\Images\SearchPopOut.png" />
     <Content Include="Content\restaurants.css" />
     <Content Include="Content\SearchPage.css" />
@@ -430,7 +445,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\Places\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

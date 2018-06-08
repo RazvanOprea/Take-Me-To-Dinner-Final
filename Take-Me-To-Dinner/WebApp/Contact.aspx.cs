@@ -18,5 +18,11 @@ namespace WebApp
         {
             e.InputParameters["cityId"] = 1;
         }
+
+        protected void lwPlaces_Init(object sender, EventArgs e)
+        {
+            
+            
+        }
     }
 }
