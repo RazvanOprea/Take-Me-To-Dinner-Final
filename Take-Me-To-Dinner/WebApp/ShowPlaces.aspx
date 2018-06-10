@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Restaurants" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="True" CodeBehind="ShowPlaces.aspx.cs" Inherits="WebApp.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="Content/Site-Contact.css?version=6" />
+    <link rel="stylesheet" href="Content/Site-Contact.css?version=8" />
 
 <div class="container-fluid">    
   <div class="row content">
@@ -27,7 +27,7 @@
                           <div class="col-sm-7 col-xs-12">
                               <div class="blank_row"></div>
                               <div class="row">
-                                  <div class="col-sm-11 col-xs-12">
+                                  <div class="col-sm-11">
                                       <asp:Label runat="server" ID="lblTitle" Text='<%# Item.Name %>' Font-Size="X-Large" Font-Bold="true"></asp:Label>
                                   </div>
                               </div>
@@ -54,14 +54,19 @@
                       </div>
                       <div class="row">
                           <div class="col-sm-5 col-xs-12">
-                              <asp:Label runat="server" ID="lblRating" Text="CUSTOMER RATING" CssClass="rating-text grey"></asp:Label>
-                              <asp:Image runat="server" ID="imgRating" ImageUrl='<%# Eval("Rating", "~/Content/Images/Rating/Rating{0}.png") %>' CssClass="rating-picture"/>
+                              <div class="center">
+                                  <asp:Label runat="server" ID="lblRating" Text="CUSTOMER RATING" CssClass="rating-text grey"></asp:Label>
+                                  <asp:Image runat="server" ID="imgRating" ImageUrl='<%# Eval("Rating", "~/Content/Images/Rating/Rating{0}.png") %>' CssClass="rating-picture"/>
+                              </div>
                           </div>
-                          <div class="col-sm-4 col-sm-offset-3 col-xs-6">
-                              <asp:Button runat="server" ID="btnDetails" CssClass="details-button" Font-Size="Larger" Text="Details" />
-                              <asp:Button runat="server" ID="Button1" CssClass="book-button" Font-Size="Larger" Text="Directions" />
+                          <div class="col-sm-4 col-sm-offset-3 col-xs-12">
+                              <div class="center">
+                                  <asp:Button runat="server" ID="btnDetails" CssClass="details-button" Font-Size="Larger" Text="Details" Height="45px" Width="100px" />
+                                  <asp:Button runat="server" ID="Button1" CssClass="book-button" Font-Size="Larger" Text="Directions" Height="45px" Width="100px"/>
+                              </div>
                           </div>
                       </div>
+                      <br />
                   </div>
                   <br />
                   <%--<div class="table-responsive">

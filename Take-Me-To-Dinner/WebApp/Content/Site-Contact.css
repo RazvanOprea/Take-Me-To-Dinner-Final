@@ -71,7 +71,7 @@ li {
 .results-item .rating-picture {
     width: 153px;
     height: 28px;
-    margin: 0 auto;
+    margin-bottom:10px;
     display: table;
 }
 
@@ -100,16 +100,13 @@ li {
 .results-item .details-button {
     background: #f7f7f7;
     border: 1px solid #C0C0C0;
-    float: right;
-    margin-right:20px;
+    margin-right:10px;
 }
 
 .results-item .book-button {
     background: #f88e1d;
     border: 1px solid #f88e1d;
     color: #FFFFFF;
-    float: right;
-    margin-right: 15px;
 }
 
 
