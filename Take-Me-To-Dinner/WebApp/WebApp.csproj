@@ -202,6 +202,7 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="Content\Images\NoResults.png" />
+    <Content Include="Content\SearchPage.css" />
     <Content Include="ShowPlaces.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -225,15 +226,13 @@
     <Content Include="Content\Images\Rating\Star_S_4.png" />
     <Content Include="Content\Images\Rating\Star_S_5.png" />
     <Content Include="Content\Images\SearchPopOut.png" />
-    <Content Include="Content\restaurants.css" />
-    <Content Include="Content\SearchPage.css" />
     <Content Include="Content\Select\select2-bootstrap.css" />
     <Content Include="Content\Select\select2-spinner.gif" />
     <Content Include="Content\Select\select2.css" />
     <Content Include="Content\Select\select2.js" />
     <Content Include="Content\Select\select2.png" />
     <Content Include="Content\Select\select2x2.png" />
-    <Content Include="Content\Site-Contact.css" />
+    <Content Include="Content\ShowPlaces.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Site2.css" />
     <Content Include="Default.aspx" />

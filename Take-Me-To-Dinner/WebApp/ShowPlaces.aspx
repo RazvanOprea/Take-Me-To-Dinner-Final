@@ -1,13 +1,22 @@
 ﻿<%@ Page Title="Restaurants" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="True" CodeBehind="ShowPlaces.aspx.cs" Inherits="WebApp.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="Content/Site-Contact.css?version=8" />
+    <link rel="stylesheet" href="Content/ShowPlaces.css?version=9" />
 
 <div class="container-fluid">    
   <div class="row content">
     <div class="col-sm-3 sidenav">
-        Some text here
-        <br />
+        <div class="row">
+            <div class="col-sm-12 col-xs-4">
+                <asp:DropDownList ID="dropdownlistcities" runat="server" Width="100px" Height="20px"></asp:DropDownList>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <asp:Button runat="server" ID="btnCity" Text="Apply" Width="100px" Height="20px"/>
+            </div>
+        </div>
+        <hr />
         Apply filter
     </div>
     <div class="col-sm-9">

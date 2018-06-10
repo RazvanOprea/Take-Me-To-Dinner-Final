@@ -13,6 +13,24 @@ namespace WebApp {
     public partial class Contact {
         
         /// <summary>
+        /// dropdownlistcities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dropdownlistcities;
+        
+        /// <summary>
+        /// btnCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCity;
+        
+        /// <summary>
         /// lwPlaces control.
         /// </summary>
         /// <remarks>
