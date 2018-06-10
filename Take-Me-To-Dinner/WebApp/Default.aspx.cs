@@ -22,5 +22,11 @@ namespace WebApp
             Response.Redirect("ShowPlaces.aspx?cityId=" + ddlCities.SelectedItem.Value);
         }
 
+        protected void ddlCities_Init(object sender, EventArgs e)
+        {
+            DropDownList ddl = (DropDownList)sender;
+            ddl.Items[0].Attributes.Add("disabled", "disabled");
+        }
+
     }
 }

@@ -1,4 +1,10 @@
-﻿.dropdown-cities {
+﻿body{
+    background: url(Images/2.jpg);
+    background-size:100%;
+    background-repeat:no-repeat;
+}
+
+.dropdown-cities {
     margin-top: 10px;
     /*margin-left: 70px;*/
     -webkit-appearance: none;
@@ -15,10 +21,7 @@
 
 .dropdown-cities:hover, .dropdown-cities:active, .dropdown-cities:focus {
     outline: none !important;
-}
-
-.dropdown-cities > ul > li:hover{
-    background:white;
+    background-color:white;
 }
 
 .center {
@@ -39,9 +42,21 @@
     text-align: center;
 }
 
+.blank_row {
+    height: 15px; /* overwrites any other rules */
+    background-color: transparent;
+}
+
+
 @media screen and (max-width: 767px) {
+    body {
+        background: url(Images/2-mobile.jpg);
+        background-size: auto;
+    }
+
     .search-container {
         margin-top: 60% !important;
+        height:150px;
     }
 
     .search-container h3 {
@@ -52,4 +67,10 @@
         font-size: 18px;
         background-size:auto;
     }
+
+    .blank_row {
+        height: 10px; /* overwrites any other rules */
+        background-color: transparent;
+    }
+    
 }
