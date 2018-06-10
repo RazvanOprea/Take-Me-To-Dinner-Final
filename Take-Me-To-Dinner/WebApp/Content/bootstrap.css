@@ -6819,3 +6819,52 @@ td.visible-print {
     display: none !important;
   }
 }
+
+/*Navbar Orange*/
+
+#custom-bootstrap-menu.navbar-default .navbar-brand {
+    color: rgba(255, 255, 255, 1);
+}
+
+#custom-bootstrap-menu.navbar-default {
+    font-size: 14px;
+    background-color: rgba(255, 148, 48, 1);
+    border-width: 0px;
+    border-radius: 0px;
+}
+
+    #custom-bootstrap-menu.navbar-default .navbar-nav > li > a {
+        color: rgba(217, 217, 217, 1);
+        background-color: rgba(255, 148, 48, 1);
+    }
+
+        #custom-bootstrap-menu.navbar-default .navbar-nav > li > a:hover,
+        #custom-bootstrap-menu.navbar-default .navbar-nav > li > a:focus {
+            color: rgba(255, 255, 255, 1);
+            background-color: rgba(255, 148, 0, 1);
+        }
+
+    #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a,
+    #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a:hover,
+    #custom-bootstrap-menu.navbar-default .navbar-nav > .active > a:focus {
+        color: rgba(255, 255, 255, 1);
+        background-color: rgba(255, 227, 199, 1);
+    }
+
+    #custom-bootstrap-menu.navbar-default .navbar-toggle {
+        border-color: #ffe3c7;
+    }
+
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+            background-color: #ffe3c7;
+        }
+
+        #custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+            background-color: #ffe3c7;
+        }
+
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
+        #custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+            background-color: #ff9430;
+        }
