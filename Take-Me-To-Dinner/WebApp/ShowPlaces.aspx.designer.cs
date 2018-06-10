@@ -10,24 +10,24 @@
 namespace WebApp {
     
     
-    public partial class ShowPlaces {
+    public partial class Contact {
         
         /// <summary>
-        /// ResultsPanel control.
+        /// lwPlaces control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ResultsPanel;
+        protected global::System.Web.UI.WebControls.ListView lwPlaces;
         
         /// <summary>
-        /// SearchResultsDataView control.
+        /// odsPlaces control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxDataView SearchResultsDataView;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsPlaces;
     }
 }

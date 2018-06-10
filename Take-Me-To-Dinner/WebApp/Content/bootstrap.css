@@ -425,6 +425,11 @@ cite {
   font-style: normal;
 }
 
+.text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
 .text-muted {
   color: #999999;
 }

@@ -36,30 +36,14 @@
         <div class="index-search">
             <h3>Search for a Restaurant</h3>
             <asp:dropdownlist id="ddlCities" runat="server" DataSourceID="ldscities" DataTextField="name" DataValueField="idcity" AppendDataBoundItems="true"
-                     CssClass="dropdown-cities" OnSelectedIndexChanged="dropdownlistplaces_SelectedIndexChanged" AutoPostBack="true"
+                     CssClass="dropdown-cities" OnSelectedIndexChanged="ddlCities_SelectedIndexChanged" AutoPostBack="true"
                      Width="510px" Height="48px" Font-Size="24px">
                 <asp:listitem Value="" Text="Select a city for tonight" ></asp:listitem>
             </asp:dropdownlist>
 
-            <%--<dx:ASPxComboBox ID="SearchComboBox" ClientInstanceName="SearchComboBox" CssClass="combobox" runat="server" AutoPostBack="true"
-                Width="80%" Height="48px" Font-Size="24px" NullText="Click to select a city" NullTextDisplayMode="UnfocusedAndFocused"
-                DataSourceID="ldsCities" ValueField="IdCity" TextField="Name" ShowShadow="true" OnSelectedIndexChanged="SearchComboBox_SelectedIndexChanged">
-                <ItemStyle CssClass="index-search-listbox-item" Height="40px" />
-                <NullTextStyle CssClass="null-text" />
-                <ButtonStyle>
-                    <HoverStyle BackColor="Transparent"></HoverStyle>
-                </ButtonStyle>
-                <DropDownButton>
-                    <Image Url="~/Content/Images/SearchPopOut.png"></Image>
-                </DropDownButton>
-                <Paddings PaddingLeft="15px"></Paddings>
-            </dx:ASPxComboBox>--%>
         </div>
     </div>
  
-
-    <%--<input type="search" id="search" placeholder="What are you looking for?..." name="searchPlace" />
-            <button type="submit" id="btnSearch" formmethod="post" formaction="/About"  class="icon" ><i class="fa fa-search"></i></button>--%>
 <asp:LinqDataSource 
     ID="ldsPlaces" 
     runat="server" 
