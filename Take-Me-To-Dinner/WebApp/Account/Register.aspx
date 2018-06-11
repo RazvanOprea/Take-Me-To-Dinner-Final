@@ -4,17 +4,14 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="../Content/Site.css?v=7" />
-    <p class="text-danger">
-        <asp:Literal runat="server" ID="ErrorMessage" />
-    </p>
 
     <div class="form-horizontal">
+        <br />
         <h1 class="title center">Register</h1>
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
-        <br />
-        <br />
+        <br /> <br />
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-sm-offset-4 col-sm-5 col-xs-12">Email</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-sm-offset-4 col-sm-5 col-xs-12" Text="Email" Font-Size="Large"></asp:Label>
             <div class="col-sm-offset-4 col-sm-8 col-xs-12">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -26,7 +23,7 @@
         </div>
         <br />
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-sm-offset-4 col-sm-5">Password</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-sm-offset-4 col-sm-5" Text="Password" Font-Size="Large"></asp:Label>
             <div class="col-sm-offset-4 col-sm-8">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
@@ -38,7 +35,7 @@
         </div>
         <br />
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="ConfirmPassword" CssClass="col-sm-offset-4 col-sm-5">Confirm password</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="ConfirmPassword" CssClass="col-sm-offset-4 col-sm-5" Text="Confirm password" Font-Size="Large"></asp:Label>
             <div class="col-sm-offset-4 col-sm-8">
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
@@ -50,6 +47,9 @@
                 </div>
             </div>
         </div>
+        <p class="text-danger center">
+            <asp:Literal runat="server" ID="ErrorMessage" />
+        </p>
         <br />
         <div class="row">
             <div class="col-sm-offset-5 col-sm-7">
