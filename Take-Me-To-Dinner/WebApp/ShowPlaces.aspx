@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Restaurants" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="True" CodeBehind="ShowPlaces.aspx.cs" Inherits="WebApp.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="Content/ShowPlaces.css?version=9" />
+    <link rel="stylesheet" href="Content/ShowPlaces.css?version=10" />
 
 <div class="container-fluid">    
   <div class="row content">
