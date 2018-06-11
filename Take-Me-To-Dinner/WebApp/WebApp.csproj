@@ -228,7 +228,6 @@
     <Content Include="Content\Images\SearchPopOut.png" />
     <Content Include="Content\ShowPlaces.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\Site2.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Models\fonts\glyphicons-halflings-regular.svg" />
