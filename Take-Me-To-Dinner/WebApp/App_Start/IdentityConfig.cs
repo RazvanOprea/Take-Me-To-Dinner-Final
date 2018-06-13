@@ -1,36 +1,58 @@
-﻿using System;
-using System.Net.Mail;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using SendGrid;
+using SendGrid.Helpers.Mail;
+using System;
+using System.Configuration;
+using System.Diagnostics;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using WebApp.Models;
 
 namespace WebApp
 {
     public class EmailService : IIdentityMessageService
     {
-        public async Task SendAsync(IdentityMessage message)
-        {
-            // convert IdentityMessage to a MailMessage
-            var email =
-               new MailMessage(new MailAddress("noreply@take-me-to-dinner.com", "(Account Confirmation)"),
-               new MailAddress(message.Destination))
-               {
-                   Subject = message.Subject,
-                   Body = message.Body,
-                   IsBodyHtml = true,
-               };
-            
+        //public async Task SendAsync(IdentityMessage message)
+        //{
+        //    // convert IdentityMessage to a MailMessage
+        //    var email =
+        //       new MailMessage(new MailAddress("noreply@take-me-to-dinner.com", "(Account Confirmation)"),
+        //       new MailAddress(message.Destination))
+        //       {
+        //           Subject = message.Subject,
+        //           Body = message.Body,
+        //           IsBodyHtml = true,
+        //       };
 
-            using (var client = new SmtpClient()) // SmtpClient configuration comes from config file
+
+        //    using (var client = new SmtpClient()) // SmtpClient configuration comes from config file
+        //    {
+        //        client.Port = 587;
+        //        await client.SendMailAsync(email);
+        //    }
+        //}
+        public Task SendAsync(IdentityMessage message)
+        {
+            return configSendGridasync(message);
+        }
+
+        private async Task configSendGridasync(IdentityMessage message)
+        {
+            var apiKey = "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";
+            var client = new SendGridClient(apiKey);
+            var msg = new SendGridMessage()
             {
-                client.Port = 587;
-                await client.SendMailAsync(email);
-            }
+                From = new EmailAddress("info@takemetodinner.com", "TakeMeToDinner"),
+                Subject = message.Subject,
+                PlainTextContent = message.Body,
+                HtmlContent = message.Body
+            };
+            msg.AddTo(new EmailAddress(message.Destination));
+            var response = await client.SendEmailAsync(msg);
         }
     }
 

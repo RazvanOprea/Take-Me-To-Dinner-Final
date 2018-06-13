@@ -8,7 +8,7 @@
     <div class="form-horizontal">
         <br />
         <h1 class="title center">Register</h1>
-        <asp:ValidationSummary runat="server" CssClass="text-danger" />
+        
         <br /> <br />
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-sm-offset-4 col-sm-5 col-xs-12" Text="Email" Font-Size="Large"></asp:Label>
@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+        <asp:ValidationSummary runat="server" CssClass="text-danger center" />
         <p class="text-danger center">
             <asp:Literal runat="server" ID="ErrorMessage" />
         </p>

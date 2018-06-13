@@ -28,7 +28,6 @@
 
 @media (min-width: 768px) and (max-width: 1296px){
     body{
-        background: url(Images/bg-2.jpg);
         background-size: auto;
         background-position: center;
     }
