@@ -9,14 +9,14 @@
     <br />
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-            <div class=" col-sm-8">
+            <div class=" col-sm-12">
                 <h2 class="title"><%:Title %></h2>
+                <br />
             </div>
             <asp:PlaceHolder id="loginForm" runat="server">
                 <div class="form-horizontal">
-                    <br /><br />
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass=" col-sm-8" Text="Email" Font-Size="Large"></asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-sm-8" Text="Email" Font-Size="Large"></asp:Label>
                         <div class="col-sm-8">
                             <div class="input-group input-group-lg">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
@@ -33,7 +33,7 @@
                     </asp:PlaceHolder>
                     <br />
                     <div class="form-group">
-                        <div class=" col-sm-8 col-xs-offset-1 col-xs-11">
+                        <div class="col-sm-8">
                             <asp:Button runat="server" OnClick="Forgot" Text="Email Link" CssClass="btn btn-default btn-round" BackColor="#f88e1d"
                                 ForeColor="White" Width="130px" Height="50px" />
                         </div>
@@ -41,7 +41,7 @@
                 </div>
             </asp:PlaceHolder>
             <asp:PlaceHolder runat="server" ID="DisplayEmail" Visible="false">
-                <p class="text-info center">
+                <p class="text-info col-sm-8">
                     Please check your email to reset your password.
                 </p>
             </asp:PlaceHolder>

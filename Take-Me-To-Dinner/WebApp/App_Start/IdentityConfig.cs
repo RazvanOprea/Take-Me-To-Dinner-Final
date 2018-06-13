@@ -42,7 +42,7 @@ namespace WebApp
 
         private async Task configSendGridasync(IdentityMessage message)
         {
-            var apiKey = "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";
+            var apiKey = Environment.GetEnvironmentVariable("SENDGRID_APIKEY", EnvironmentVariableTarget.User);
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
