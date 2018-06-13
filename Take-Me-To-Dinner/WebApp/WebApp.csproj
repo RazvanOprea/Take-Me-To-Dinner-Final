@@ -201,7 +201,9 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="Content\Account.css" />
     <Content Include="Content\Images\bg-1.jpg" />
+    <Content Include="Content\Images\bg-2 - Copy %282%29.jpg" />
     <Content Include="Content\Images\bg-2-mobile.jpg" />
     <Content Include="Content\Images\bg-2.jpg" />
     <Content Include="Content\Images\NoResults.png" />

@@ -4,7 +4,7 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../Content/Site.css?v=8" />
+    <link rel="stylesheet" href="../Content/Account.css?v=5" />
 
 
     <div class="form-horizontal">
@@ -49,7 +49,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-5 col-sm-7">
-                <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default submit" BackColor="#f88e1d"
+                <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default btn-round" BackColor="#f88e1d"
                     ForeColor="White" Width="130px" Height="50px" />
             </div>
         </div>
