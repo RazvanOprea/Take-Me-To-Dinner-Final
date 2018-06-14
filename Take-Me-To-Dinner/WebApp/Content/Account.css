@@ -18,6 +18,9 @@
 .btn-round {
     border-radius: 20px;
 }
+.btn-round:focus{
+    outline:none;
+}
 
 @media screen and (max-width: 767px) {
     body {
