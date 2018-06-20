@@ -76,13 +76,49 @@ namespace WebApp {
         protected global::System.Web.UI.WebControls.TextBox txtMaxPrice;
         
         /// <summary>
-        /// btnCity control.
+        /// LabelRating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCity;
+        protected global::System.Web.UI.WebControls.Label LabelRating;
+        
+        /// <summary>
+        /// ratingSliderControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ratingSliderControl;
+        
+        /// <summary>
+        /// ratingSlider control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.SliderExtender ratingSlider;
+        
+        /// <summary>
+        /// ratingText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ratingText;
+        
+        /// <summary>
+        /// btnApply control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnApply;
         
         /// <summary>
         /// lwPlaces control.

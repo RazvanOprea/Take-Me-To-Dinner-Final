@@ -223,6 +223,7 @@
     <Content Include="Content\Images\Rating\ratingStarEmpty.png" />
     <Content Include="Content\Images\Rating\ratingStarFilled.png" />
     <Content Include="Content\Images\Rating\ratingStarSaved.png" />
+    <Content Include="Content\Images\SearchPopOut_S.png" />
     <Content Include="Content\Images\TrackBarHandle.png" />
     <Content Include="Content\SearchPage.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

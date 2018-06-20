@@ -34,11 +34,12 @@ namespace Business.Managers
             }
         }
 
-        public static List<Place> GetAllPlacesByCityId(int cityId)
+        public static List<Place> GetAllPlacesByCityId(int cityId, int rating)
         {
             using (var db = new EntitiesContext())
             {
-                return db.Places.Where(x => x.IdCity == cityId).ToList();
+                // TO DO: Check if confirmed == true
+                return db.Places.Where(x => x.IdCity == cityId && x.Rating >= rating).ToList();
             }
         }
 

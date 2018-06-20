@@ -11,7 +11,7 @@
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content {
-    height: 700px;
+    height: 680px;
 }
 
 /* Set gray background color and 100% height */
@@ -134,7 +134,7 @@ li {
     margin-top: 10px;
     /*margin-left: 70px;*/
     -webkit-appearance: none;
-    background: url(Images/SearchPopOut.png);
+    background: url(Images/SearchPopOut_S.png);
     background-position: right;
     background-repeat: no-repeat;
     outline: none !important;
@@ -150,6 +150,26 @@ li {
     background-color: white;
 }
 
+.myhandle {
+    height: 26px;
+    width: 26px;
+    vertical-align: central;
+}
+
+.mymultihandle {
+    background: url(Images/TrackBarHandle.png) no-repeat;
+    position: absolute;
+    height: 26px;
+    width: 26px;
+}
+
+/*.myrail {
+    position: relative;
+    background-color: #f88e1d;
+    width: 80px;
+    height: 2px;
+    vertical-align:central;
+}*/
 
 
 
