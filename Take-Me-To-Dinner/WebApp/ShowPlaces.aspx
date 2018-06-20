@@ -1,36 +1,63 @@
 ﻿<%@ Page Title="Restaurants" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="True" CodeBehind="ShowPlaces.aspx.cs" Inherits="WebApp.Contact" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="Content/ShowPlaces.css?version=16" />
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-    <script type="text/javascript">
-        function ddlCities_SelectedIndexChanged(ddlCities)
-          {
-            alert(ddlCities.options[ddlCities.selectedIndex].text);
-          }
-    </script>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <link rel="stylesheet" href="Content/ShowPlaces.css?version=20" />
 
 <div class="container-fluid">    
   <div class="row content">
     <div class="col-sm-3 sidenav">
         <div class="row">
             <div class="col-sm-12 col-xs-6">
-                <asp:Label runat="server" ID="lblCities" Text="Change city" CssClass="center grey"></asp:Label>
+                <asp:Label runat="server" ID="lblCities" Text="CITY" CssClass="center grey"></asp:Label>
                 <asp:dropdownlist id="ddlCities" runat="server" DataSourceID="ldscities" DataTextField="name" DataValueField="idcity"
-                        CssClass="form-control dropdown-cities center" AutoPostBack="true" Width="60%" OnSelectedIndexChanged="ddlCities_SelectedIndexChanged" >
+                        CssClass="form-control dropdown-cities center" AutoPostBack="false" Width="60%" >
                 </asp:dropdownlist>
             </div>
         </div>
         <hr />
+        
         <div class="blank_row"></div>
         <div class="row">
-            <asp:ScriptManager runat="server" ID="ScriptManager1" />
-            <asp:TextBox runat="server" ID="slider"></asp:TextBox>
+            <div class="col-sm-12 col-xs-6">
+                <asp:Label runat="server" ID="lblPrice" Text="PRICE" CssClass="center grey"></asp:Label>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <asp:TextBox ID="txtMinPrice" runat="server" Width="30" Text="0" />
+                    </div>
+                    <div class="col-sm-8">
+                        <asp:TextBox ID="sliderTwo" runat="server" />
+                        <ajaxToolkit:MultiHandleSliderExtender ID="multiHandleSliderExtenderTwo" runat="server"
+                            BehaviorID="multiHandleSliderExtenderTwo"
+                            TargetControlID="sliderTwo"
+                            Minimum="0"
+                            Maximum="10"
+                            Length="175"
+                            TooltipText="{0}"
+                            EnableHandleAnimation="true"
+                            Orientation="Horizontal"
+                            EnableKeyboard="false"
+                            EnableMouseWheel="false"
+                            ShowHandleDragStyle="true"
+                            ShowHandleHoverStyle="true" 
+                            HandleImageUrl="~/Content/Images/TrackBarHandle.png">
+                            <MultiHandleSliderTargets>
+                                <ajaxToolkit:MultiHandleSliderTarget ControlID="txtMinPrice" />
+                                <ajaxToolkit:MultiHandleSliderTarget ControlID="txtMaxPrice" />
+                            </MultiHandleSliderTargets>
+                        </ajaxToolkit:MultiHandleSliderExtender>
+                    </div>
+                    <div class="col-sm-2">
+                        <asp:TextBox ID="txtMaxPrice" runat="server" Width="30" Text="10" />
+                    </div>
+                </div>
+            </div>
         </div>
         <hr />
         <div class="row">
             <div class="col-sm-12 col-xs-12">
-                <asp:Button runat="server" ID="btnCity" Text="Apply" Width="100px" Height="30px" CssClass="center"/>
+                <asp:Button runat="server" ID="btnCity" Text="Apply" Width="100px" Height="30px" CssClass="center" OnClick="btnCity_Click"/>
             </div>
         </div>
     </div>

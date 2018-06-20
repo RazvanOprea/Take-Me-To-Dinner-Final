@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=18.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxControlToolkit.18.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap, Version=3.3.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AspNet.ScriptManager.bootstrap.3.3.7\lib\net45\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
@@ -210,7 +213,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\bg-1.jpg" />
-    <Content Include="Content\Images\bg-2 - Copy %282%29.jpg" />
     <Content Include="Content\Images\bg-2-mobile.jpg" />
     <Content Include="Content\Images\bg-2.jpg" />
     <Content Include="Content\Images\NoResults.png" />
@@ -218,6 +220,10 @@
     <Content Include="Content\Images\Places\fenice_palas.jpg" />
     <Content Include="Content\Images\Places\oscar.jpg" />
     <Content Include="Content\Images\Places\vivo.jpg" />
+    <Content Include="Content\Images\Rating\ratingStarEmpty.png" />
+    <Content Include="Content\Images\Rating\ratingStarFilled.png" />
+    <Content Include="Content\Images\Rating\ratingStarSaved.png" />
+    <Content Include="Content\Images\TrackBarHandle.png" />
     <Content Include="Content\SearchPage.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ShowPlaces.aspx" />

@@ -31,22 +31,49 @@ namespace WebApp {
         protected global::System.Web.UI.WebControls.DropDownList ddlCities;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// lblPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.Label lblPrice;
         
         /// <summary>
-        /// slider control.
+        /// txtMinPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox slider;
+        protected global::System.Web.UI.WebControls.TextBox txtMinPrice;
+        
+        /// <summary>
+        /// sliderTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox sliderTwo;
+        
+        /// <summary>
+        /// multiHandleSliderExtenderTwo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MultiHandleSliderExtender multiHandleSliderExtenderTwo;
+        
+        /// <summary>
+        /// txtMaxPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMaxPrice;
         
         /// <summary>
         /// btnCity control.

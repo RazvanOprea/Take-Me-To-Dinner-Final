@@ -33,5 +33,14 @@ namespace WebApp
             Session["cityId"] = ddl.SelectedItem.Value;
             lwPlaces.DataBind();
         }
+
+        protected void btnCity_Click(object sender, EventArgs e)
+        {
+            int cmbval = Convert.ToInt32(ddlCities.SelectedItem.Value);
+            int minval = Convert.ToInt32(txtMinPrice.Text);
+            int maxval = Convert.ToInt32(txtMaxPrice.Text);
+            Session["cityId"] = cmbval;
+            lwPlaces.DataBind();
+        }
     }
 }
