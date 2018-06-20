@@ -21,13 +21,6 @@
             </div>
         </div>
     </div>
- 
-<asp:LinqDataSource 
-    ID="ldsPlaces" 
-    runat="server" 
-    ContextTypeName="Business.EntitiesContext" 
-    TableName="Places">
-</asp:LinqDataSource>
 
 <asp:LinqDataSource
     ID="ldsCities"

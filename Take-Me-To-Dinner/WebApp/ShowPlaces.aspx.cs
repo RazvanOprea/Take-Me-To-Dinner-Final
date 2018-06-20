@@ -21,6 +21,17 @@ namespace WebApp
         {
             e.InputParameters["cityId"] = Session["cityId"];
         }
-        
+
+        protected String FormatTime(TimeSpan? input)
+        {
+            return input.Value.ToString(@"hh\:mm");
+        }
+
+        protected void ddlCities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList ddl = sender as DropDownList;
+            Session["cityId"] = ddl.SelectedItem.Value;
+            lwPlaces.DataBind();
+        }
     }
 }

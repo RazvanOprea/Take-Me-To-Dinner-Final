@@ -22,15 +22,6 @@ namespace WebApp {
         protected global::System.Web.UI.WebControls.DropDownList ddlCities;
         
         /// <summary>
-        /// ldsPlaces control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource ldsPlaces;
-        
-        /// <summary>
         /// ldsCities control.
         /// </summary>
         /// <remarks>
