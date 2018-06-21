@@ -259,3 +259,4 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+Take-Me-To-Dinner/WebApp/App_Data/aspnet-WebApp-20180514094826.mdf
