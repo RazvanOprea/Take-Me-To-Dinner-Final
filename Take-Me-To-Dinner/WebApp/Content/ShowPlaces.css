@@ -199,14 +199,3 @@ li {
         margin-left:15px;
     }
 }
-
-/*@media (min-width: 768px) and (max-width: 991px){
-    .results-item .picture {
-        margin: auto;
-        cursor: pointer;
-        width: 275px;
-        width: 280px, height:195px
-        height: 180px;
-        padding: 10px;
-    }
-}*/

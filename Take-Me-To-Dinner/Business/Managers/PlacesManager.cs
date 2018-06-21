@@ -53,5 +53,13 @@ namespace Business.Managers
             }
         }
 
+        public static List<PlacesPhoto> GetPlacePhotos(int placeId)
+        {
+            using (var db = new EntitiesContext())
+            {
+                return db.PlacesPhotos.Where(x => x.IdPlace == placeId).ToList();
+            }
+        }
+
     }
 }

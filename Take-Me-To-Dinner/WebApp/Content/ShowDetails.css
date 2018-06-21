@@ -1,0 +1,36 @@
+﻿.item-container {
+    margin-top: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    background-color: #ffffff;
+    width:100%;
+}
+
+.center {
+    margin: 0 auto;
+    display: table;
+}
+
+.grey {
+    color: #808080;
+}
+
+
+.blank_row {
+    height: 11px; /* overwrites any other rules */
+    background-color: #FFFFFF;
+}
+
+.rating-img {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .blank_row {
+        height: 8px;
+        background-color: #FFFFFF;
+    }
+    .col-xs-center {
+        margin: 0 auto;
+        display: table;
+    }
+}

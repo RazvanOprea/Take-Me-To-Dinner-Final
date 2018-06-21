@@ -216,6 +216,10 @@
     <Content Include="Content\Images\bg-2-mobile.jpg" />
     <Content Include="Content\Images\bg-2.jpg" />
     <Content Include="Content\Images\NoResults.png" />
+    <Content Include="Content\Images\PlacesPhotos\oscar2.jpg" />
+    <Content Include="Content\Images\PlacesPhotos\oscar3.jpg" />
+    <Content Include="Content\Images\PlacesPhotos\oscar4.jpg" />
+    <Content Include="Content\Images\PlacesPhotos\oscar5.jpg" />
     <Content Include="Content\Images\Places\class_fast_food.jpg" />
     <Content Include="Content\Images\Places\fenice_palas.jpg" />
     <Content Include="Content\Images\Places\oscar.jpg" />
@@ -225,7 +229,11 @@
     <Content Include="Content\Images\Rating\ratingStarSaved.png" />
     <Content Include="Content\Images\SearchPopOut_S.png" />
     <Content Include="Content\Images\TrackBarHandle.png" />
+    <Content Include="Content\jsImgSlider\themes\1\bullet.png" />
+    <Content Include="Content\jsImgSlider\themes\1\js-image-slider.css" />
+    <Content Include="Content\jsImgSlider\themes\1\js-image-slider.js" />
     <Content Include="Content\SearchPage.css" />
+    <Content Include="Content\ShowDetails.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="ShowDetails.aspx" />
     <Content Include="ShowPlaces.aspx" />

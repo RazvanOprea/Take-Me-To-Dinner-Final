@@ -13,13 +13,22 @@ namespace WebApp {
     public partial class ShowDetails {
         
         /// <summary>
-        /// dsada control.
+        /// imgRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dsada;
+        protected global::System.Web.UI.WebControls.Repeater imgRepeater;
+        
+        /// <summary>
+        /// DataListPlace control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataList DataListPlace;
         
         /// <summary>
         /// odsPlace control.
@@ -29,5 +38,14 @@ namespace WebApp {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource odsPlace;
+        
+        /// <summary>
+        /// odsPlacePhotos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsPlacePhotos;
     }
 }
