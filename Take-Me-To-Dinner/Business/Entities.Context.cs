@@ -31,5 +31,6 @@ namespace Business
         public virtual DbSet<PlacesPhoto> PlacesPhotos { get; set; }
         public virtual DbSet<PlacesType> PlacesTypes { get; set; }
         public virtual DbSet<UserSearchHistory> UserSearchHistories { get; set; }
+        public virtual DbSet<PlacesReview> PlacesReviews { get; set; }
     }
 }

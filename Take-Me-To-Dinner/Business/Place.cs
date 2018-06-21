@@ -20,6 +20,7 @@ namespace Business
             this.MostWantedPlaces = new HashSet<MostWantedPlace>();
             this.PlacesPhotos = new HashSet<PlacesPhoto>();
             this.UserSearchHistories = new HashSet<UserSearchHistory>();
+            this.PlacesReviews = new HashSet<PlacesReview>();
         }
     
         public int IdPlace { get; set; }
@@ -47,5 +48,7 @@ namespace Business
         public virtual ICollection<PlacesPhoto> PlacesPhotos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserSearchHistory> UserSearchHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlacesReview> PlacesReviews { get; set; }
     }
 }

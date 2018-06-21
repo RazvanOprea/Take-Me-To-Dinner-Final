@@ -92,6 +92,9 @@
     <Compile Include="PlacesPhoto.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="PlacesReview.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="PlacesType.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

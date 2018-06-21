@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -54,6 +54,18 @@
           <Property Name="Extension" Type="varchar" MaxLength="10" />
           <Property Name="IdUser" Type="nvarchar(max)" />
           <Property Name="UploadDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PlacesReviews">
+          <Key>
+            <PropertyRef Name="IdReview" />
+          </Key>
+          <Property Name="IdReview" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPlace" Type="int" Nullable="false" />
+          <Property Name="IdUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="EmailUser" Type="nvarchar" MaxLength="128" />
+          <Property Name="Review" Type="nvarchar(max)" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="Date" Type="datetime" />
         </EntityType>
         <EntityType Name="PlacesTypes">
           <Key>
@@ -106,6 +118,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PlacesReviews_Places">
+          <End Role="Places" Type="Self.Places" Multiplicity="1" />
+          <End Role="PlacesReviews" Type="Self.PlacesReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Places">
+              <PropertyRef Name="IdPlace" />
+            </Principal>
+            <Dependent Role="PlacesReviews">
+              <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserSearchHistory_Places">
           <End Role="Places" Type="Self.Places" Multiplicity="1" />
           <End Role="UserSearchHistory" Type="Self.UserSearchHistory" Multiplicity="*" />
@@ -123,6 +147,7 @@
           <EntitySet Name="MostWantedPlaces" EntityType="Self.MostWantedPlaces" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlacesPhotos" EntityType="Self.PlacesPhotos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlacesReviews" EntityType="Self.PlacesReviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlacesTypes" EntityType="Self.PlacesTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserSearchHistory" EntityType="Self.UserSearchHistory" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_MostWantedPlaces_Places" Association="Self.FK_MostWantedPlaces_Places">
@@ -137,13 +162,16 @@
             <End Role="Places" EntitySet="Places" />
             <End Role="PlacesPhotos" EntitySet="PlacesPhotos" />
           </AssociationSet>
+          <AssociationSet Name="FK_PlacesReviews_Places" Association="Self.FK_PlacesReviews_Places">
+            <End Role="Places" EntitySet="Places" />
+            <End Role="PlacesReviews" EntitySet="PlacesReviews" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserSearchHistory_Places" Association="Self.FK_UserSearchHistory_Places">
             <End Role="Places" EntitySet="Places" />
             <End Role="UserSearchHistory" EntitySet="UserSearchHistory" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -190,6 +218,7 @@
           <NavigationProperty Name="MostWantedPlaces" Relationship="Self.FK_MostWantedPlaces_Places" FromRole="Places" ToRole="MostWantedPlaces" />
           <NavigationProperty Name="PlacesPhotos" Relationship="Self.FK_PlacesPhotos_Places" FromRole="Places" ToRole="PlacesPhotos" />
           <NavigationProperty Name="UserSearchHistories" Relationship="Self.FK_UserSearchHistory_Places" FromRole="Places" ToRole="UserSearchHistory" />
+          <NavigationProperty Name="PlacesReviews" Relationship="EntitiesModel.FK_PlacesReviews_Places" FromRole="Place" ToRole="PlacesReview" />
         </EntityType>
         <EntityType Name="PlacesPhoto">
           <Key>
@@ -291,7 +320,37 @@
             <End Role="Places" EntitySet="Places" />
             <End Role="UserSearchHistory" EntitySet="UserSearchHistories" />
           </AssociationSet>
+          <EntitySet Name="PlacesReviews" EntityType="EntitiesModel.PlacesReview" />
+          <AssociationSet Name="FK_PlacesReviews_Places" Association="EntitiesModel.FK_PlacesReviews_Places">
+            <End Role="Place" EntitySet="Places" />
+            <End Role="PlacesReview" EntitySet="PlacesReviews" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="PlacesReview">
+          <Key>
+            <PropertyRef Name="IdReview" />
+          </Key>
+          <Property Name="IdReview" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPlace" Type="Int32" Nullable="false" />
+          <Property Name="IdUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="EmailUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Review" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Place" Relationship="EntitiesModel.FK_PlacesReviews_Places" FromRole="PlacesReview" ToRole="Place" />
+        </EntityType>
+        <Association Name="FK_PlacesReviews_Places">
+          <End Type="EntitiesModel.Place" Role="Place" Multiplicity="1" />
+          <End Type="EntitiesModel.PlacesReview" Role="PlacesReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Place">
+              <PropertyRef Name="IdPlace" />
+            </Principal>
+            <Dependent Role="PlacesReview">
+              <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -366,6 +425,19 @@
                 <ScalarProperty Name="IdSearch" ColumnName="IdSearch" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlacesReviews">
+            <EntityTypeMapping TypeName="EntitiesModel.PlacesReview">
+              <MappingFragment StoreEntitySet="PlacesReviews">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Review" ColumnName="Review" />
+                <ScalarProperty Name="EmailUser" ColumnName="EmailUser" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
+                <ScalarProperty Name="IdReview" ColumnName="IdReview" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
