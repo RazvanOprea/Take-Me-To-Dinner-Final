@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -32,10 +33,6 @@ namespace WebApp
 
         protected void btnApply_Click(object sender, EventArgs e)
         {
-            //int cmbval = Convert.ToInt32(ddlCities.SelectedItem.Value);
-            //int minval = Convert.ToInt32(txtMinPrice.Text);
-            //int maxval = Convert.ToInt32(txtMaxPrice.Text);
-            //int rating = Convert.ToInt32(ratingText.Text);
             Session["cityId"] = Convert.ToInt32(ddlCities.SelectedItem.Value);
             Session["rating"] = Convert.ToInt32(ratingText.Text);
             // TO DO : la selecting sa adaug si min-max price
@@ -43,6 +40,22 @@ namespace WebApp
             Session["maxPrice"] = Convert.ToInt32(txtMaxPrice.Text);
 
             lwPlaces.DataBind();
+        }
+
+        protected void btnDirections_Click(object sender, EventArgs e)
+        {
+            Button myButton = (Button)sender;
+            int idPlace = Convert.ToInt32(myButton.CommandArgument.ToString());
+            string querry = PlacesManager.GetGoogleMapsQuery(idPlace);
+            //Response.Redirect("https://" +"www.google.com/maps/search/?api=1&query="+ Server.UrlEncode(querry)); // Doar search
+            Response.Redirect("https://" + "www.google.com/maps/dir/?api=1&destination=" + Server.UrlEncode(querry));
+        }
+
+        protected void btnDetails_Click(object sender, EventArgs e)
+        {
+            Button myButton = (Button)sender;
+            int idPlace = Convert.ToInt32(myButton.CommandArgument.ToString());
+            Response.Redirect("ShowDetails.aspx?placeId=" + idPlace);
         }
     }
 }

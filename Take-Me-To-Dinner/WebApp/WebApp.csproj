@@ -227,6 +227,7 @@
     <Content Include="Content\Images\TrackBarHandle.png" />
     <Content Include="Content\SearchPage.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ShowDetails.aspx" />
     <Content Include="ShowPlaces.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\Images\bg-3.jpg" />
@@ -415,6 +416,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="ShowDetails.aspx.cs">
+      <DependentUpon>ShowDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ShowDetails.aspx.designer.cs">
+      <DependentUpon>ShowDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ShowPlaces.aspx.cs">
       <DependentUpon>ShowPlaces.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

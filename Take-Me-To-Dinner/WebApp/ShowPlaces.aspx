@@ -10,7 +10,7 @@
   <div class="row content">
     <div class="col-sm-3 sidenav">
         <div class="row">
-            <div class="col-sm-12 col-xs-6">
+            <div class="col-sm-12 col-xs-12">
                 <asp:Label runat="server" ID="lblCities" Text="CHOOSE A CITY" CssClass="center grey"></asp:Label>
                 <asp:dropdownlist id="ddlCities" runat="server" DataSourceID="ldscities" DataTextField="name" DataValueField="idcity"
                         CssClass="form-control dropdown-cities center" AutoPostBack="false" Width="60%" >
@@ -57,12 +57,12 @@
             <div class="col-sm-12 col-xs-12">
                 <asp:Label runat="server" ID="LabelRating" Text="CUSTOMER RATING" CssClass="center grey"></asp:Label>
                 <div class="row">
-                    <div class="col-sm-10 col-xs-8">
+                    <div class="col-sm-10 col-xs-9">
                         <asp:TextBox runat="server" ID="ratingSliderControl" />
                         <ajaxToolkit:SliderExtender runat="server" ID="ratingSlider" TargetControlID="ratingSliderControl" BoundControlID="ratingText" TooltipText="ratingText"
                             Minimum="1" Maximum="5" Length=220 HandleImageUrl="~/Content/Images/TrackBarHandle.png" HandleCssClass="myhandle"/>
                     </div>
-                    <div class="col-sm-2 col-xs-8">
+                    <div class="col-sm-2 col-xs-3">
                         <asp:TextBox runat="server" ID="ratingText" Width="30" Text="1" BackColor="#f88e1d" ForeColor="White" BorderStyle="None" />
                     </div>
                 </div>
@@ -127,9 +127,10 @@
                           </div>
                           <div class="col-sm-4 col-sm-offset-3 col-xs-12">
                               <div class="center">
-                                  <asp:Button runat="server" ID="btnDetails" CssClass="details-button" Font-Size="Larger" Text="Details" Height="45px" Width="100px" />
+                                  <asp:Button runat="server" ID="btnDetails" CssClass="details-button" Font-Size="Larger" Text="Details" Height="45px" Width="100px"
+                                      OnClick="btnDetails_Click" CommandArgument='<%#Item.IdPlace %>'/>
                                   <asp:Button runat="server" ID="btnDirections" CssClass="book-button" Font-Size="Larger" Text="Directions" Height="45px" Width="100px" 
-                                      PostBackUrl='<%#Eval("GoogleMapLink") %>'/>
+                                      OnClick="btnDirections_Click" CommandArgument='<%#Item.IdPlace %>'/>
                               </div>
                           </div>
                       </div>

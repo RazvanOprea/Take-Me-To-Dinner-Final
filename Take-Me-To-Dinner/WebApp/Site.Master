@@ -15,7 +15,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <script type="text/javascript">
         function pageLoad() {
-            $('.body-content').hide().fadeIn(1000);
+            $('.body-content').hide().fadeIn(1500);
         }
     </script>
 

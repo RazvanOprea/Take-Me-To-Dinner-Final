@@ -43,5 +43,15 @@ namespace Business.Managers
             }
         }
 
+        public static String GetGoogleMapsQuery(int idPlace)
+        {
+            using (var db = new EntitiesContext())
+            {
+                Place place = db.Places.Where(x => x.IdPlace == idPlace).SingleOrDefault();
+                string city = db.Cities.SingleOrDefault(x =>x.IdCity == place.IdCity).Name;
+                return place.Name + " " + city;
+            }
+        }
+
     }
 }
