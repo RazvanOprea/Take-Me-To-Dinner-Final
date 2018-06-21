@@ -32,11 +32,10 @@
           <Property Name="Adress" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Telephone" Type="nvarchar" MaxLength="20" />
           <Property Name="Website" Type="nvarchar" MaxLength="200" />
-          <Property Name="Rating" Type="float" />
-          <Property Name="RatingVotes" Type="int" />
-          <Property Name="Lat" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Long" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="GoogleMapLink" Type="nvarchar(max)" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="RatingFloat" Type="float" />
+          <Property Name="Lat" Type="nvarchar" MaxLength="200" />
+          <Property Name="Long" Type="nvarchar" MaxLength="200" />
           <Property Name="OpenTime" Type="time" Precision="3" />
           <Property Name="CloseTime" Type="time" Precision="3" />
           <Property Name="Confirmed" Type="bit" />
@@ -50,7 +49,11 @@
           </Key>
           <Property Name="IdPhoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPlace" Type="int" Nullable="false" />
-          <Property Name="PhotoPath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Path" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Extension" Type="varchar" MaxLength="10" />
+          <Property Name="IdUser" Type="nvarchar(max)" />
+          <Property Name="UploadDate" Type="datetime" />
         </EntityType>
         <EntityType Name="PlacesTypes">
           <Key>
@@ -173,11 +176,10 @@
           <Property Name="Adress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Website" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Rating" Type="Double" />
-          <Property Name="RatingVotes" Type="Int32" />
-          <Property Name="Lat" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Long" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GoogleMapLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="RatingFloat" Type="Double" />
+          <Property Name="Lat" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Long" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="OpenTime" Type="Time" Precision="3" />
           <Property Name="CloseTime" Type="Time" Precision="3" />
           <Property Name="Confirmed" Type="Boolean" />
@@ -195,7 +197,11 @@
           </Key>
           <Property Name="IdPhoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdPlace" Type="Int32" Nullable="false" />
-          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Extension" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IdUser" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UploadDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Place" Relationship="Self.FK_PlacesPhotos_Places" FromRole="PlacesPhotos" ToRole="Places" />
         </EntityType>
         <EntityType Name="PlacesType">
@@ -321,10 +327,9 @@
                 <ScalarProperty Name="Telephone" ColumnName="Telephone" />
                 <ScalarProperty Name="Website" ColumnName="Website" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="RatingVotes" ColumnName="RatingVotes" />
+                <ScalarProperty Name="RatingFloat" ColumnName="RatingFloat" />
                 <ScalarProperty Name="Lat" ColumnName="Lat" />
                 <ScalarProperty Name="Long" ColumnName="Long" />
-                <ScalarProperty Name="GoogleMapLink" ColumnName="GoogleMapLink" />
                 <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
                 <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
                 <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
@@ -339,7 +344,11 @@
               <MappingFragment StoreEntitySet="PlacesPhotos">
                 <ScalarProperty Name="IdPhoto" ColumnName="IdPhoto" />
                 <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
-                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Extension" ColumnName="Extension" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

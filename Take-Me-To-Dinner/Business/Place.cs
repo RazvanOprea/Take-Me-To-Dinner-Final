@@ -29,11 +29,10 @@ namespace Business
         public string Adress { get; set; }
         public string Telephone { get; set; }
         public string Website { get; set; }
-        public Nullable<double> Rating { get; set; }
-        public Nullable<int> RatingVotes { get; set; }
+        public Nullable<int> Rating { get; set; }
+        public Nullable<double> RatingFloat { get; set; }
         public string Lat { get; set; }
         public string Long { get; set; }
-        public string GoogleMapLink { get; set; }
         public Nullable<System.TimeSpan> OpenTime { get; set; }
         public Nullable<System.TimeSpan> CloseTime { get; set; }
         public Nullable<bool> Confirmed { get; set; }

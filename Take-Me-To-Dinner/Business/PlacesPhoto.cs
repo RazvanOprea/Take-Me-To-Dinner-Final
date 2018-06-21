@@ -16,7 +16,11 @@ namespace Business
     {
         public int IdPhoto { get; set; }
         public int IdPlace { get; set; }
-        public string PhotoPath { get; set; }
+        public string Path { get; set; }
+        public string Name { get; set; }
+        public string Extension { get; set; }
+        public string IdUser { get; set; }
+        public Nullable<System.DateTime> UploadDate { get; set; }
     
         public virtual Place Place { get; set; }
     }
