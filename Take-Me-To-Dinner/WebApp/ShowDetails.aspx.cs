@@ -33,6 +33,12 @@ namespace WebApp
             return input.ToUpper();
         }
 
+        public string ReviewFormat(string email, object date)
+        {
+            DateTime newDate = (DateTime)date;
+            return "Posted by " + email + " on " + newDate.ToString("dd/MM/yyyy");
+        }
+
         protected void linkWebsite_Click(object sender, EventArgs e)
         {
             LinkButton myButton = (LinkButton)sender;
@@ -45,6 +51,11 @@ namespace WebApp
             int idPlace = Convert.ToInt32(myButton.CommandArgument.ToString());
             string querry = PlacesManager.GetGoogleMapsQuery(idPlace);
             Response.Redirect("https://" + "www.google.com/maps/dir/?api=1&destination=" + Server.UrlEncode(querry));
+        }
+
+        protected void odsReviews_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            e.InputParameters["placeId"] = Session["placeId"];
         }
     }
 }

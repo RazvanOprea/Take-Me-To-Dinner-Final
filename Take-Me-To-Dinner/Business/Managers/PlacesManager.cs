@@ -61,5 +61,13 @@ namespace Business.Managers
             }
         }
 
+        public static List<PlacesReview> GetReviews(int placeId)
+        {
+            using (var db = new EntitiesContext())
+            {
+                return db.PlacesReviews.Where(x => x.IdPlace == placeId).OrderBy(x => x.Date).ToList();
+            }
+        }
+
     }
 }

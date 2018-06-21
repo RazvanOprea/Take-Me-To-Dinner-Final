@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="Content/ShowDetails.css?v=4" rel="stylesheet" type="text/css" />
+    <link href="Content/ShowDetails.css?v=6" rel="stylesheet" type="text/css" />
     <link href="Content/jsImgSlider/themes/1/js-image-slider.css?v=13" rel="stylesheet" type="text/css" />
     <script src="Content/jsImgSlider/themes/1/js-image-slider.js" type="text/javascript"></script>
 
@@ -37,7 +37,7 @@
                     <div class="row">
                         <div class="col-sm-11 col-xs-12">
                             <asp:Image runat="server" ID="imgRating" ImageUrl='<%# Eval("Rating", "~/Content/Images/Rating/Rating{0}.png") %>' 
-                                Height="20px" Width="125px" CssClass="rating-img col-xs-center" ToolTip='<%#Eval("RatingFloat") %>'/>
+                                Height="20px" Width="120px" CssClass="rating-img col-xs-center" ToolTip='<%#Eval("RatingFloat") %>'/>
                         </div>
                     </div>
                     <div class="blank_row"></div>
@@ -99,14 +99,45 @@
                             </div>
                         </div>
                     </div>
-
                 </ItemTemplate>
             </asp:DataList>
         </div>
     </div>
     <div class="container item-container">
+        <div class="col-sm-12 col-xs-12 center">
+            <h3>Customer reviews</h3>
+        </div>
         <div class="col-sm-12 col-xs-12">
-           
+           <asp:ListView runat="server" ID="lwReviews" ItemType="Business.PlacesReview" DataSourceID="odsReviews" DataKeyNames="IdReview" ItemPlaceholderID="ItemContainer">
+               <LayoutTemplate>
+                  <ul class="ul-places">
+                      <asp:PlaceHolder ID="ItemContainer" runat="server"/>
+                  </ul>
+              </LayoutTemplate>
+              <ItemTemplate>
+                  <li>
+                      <div class="row">
+                          <div class="col-sm-12 col-xs-12">
+                              <i class="fa fa-comment"></i>
+                              <asp:Label runat="server" ID="lblEmail" Text='<%# ReviewFormat(Eval("EmailUser").ToString(), Eval("Date")) %>'
+                                  Font-Italic="true" Font-Bold="true"/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12 col-xs-12 custom-margin">
+                              <asp:Label runat="server" ID="lblReview" Text='<%#Item.Review %>' />
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-2 col-xs-12">
+                            <asp:Image runat="server" ID="imgRatingReview" ImageUrl='<%# Eval("Rating", "~/Content/Images/Rating/Rating{0}.png") %>' 
+                                Height="20px" Width="120px" CssClass="rating-img center"/>
+                        </div>
+                      </div>
+                      <hr />
+                  </li>
+              </ItemTemplate>
+           </asp:ListView>
         </div>
     </div>
 
@@ -125,6 +156,16 @@
         DataObjectTypeName="Business.PlacesPhoto"
         SelectMethod="GetPlacePhotos"
         OnSelecting="odsPlacePhotos_Selecting">
+        <SelectParameters>
+            <asp:Parameter Name="placeId" Type="Int32" />
+        </SelectParameters>
+    </asp:ObjectDataSource>
+    
+    <asp:ObjectDataSource runat="server" ID="odsReviews"
+        TypeName="Business.Managers.PlacesManager"
+        DataObjectTypeName="Business.PlacesReview"
+        SelectMethod="GetReviews"
+        OnSelecting="odsReviews_Selecting">
         <SelectParameters>
             <asp:Parameter Name="placeId" Type="Int32" />
         </SelectParameters>
