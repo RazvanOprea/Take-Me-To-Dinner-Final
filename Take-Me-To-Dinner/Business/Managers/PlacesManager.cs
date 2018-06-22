@@ -87,6 +87,20 @@ namespace Business.Managers
             UpdateRatingAfterReview(idPlace);
         }
 
+        public static void DeleteReview(int idReview)
+        {
+            using (var db = new EntitiesContext())
+            {
+                var review = db.PlacesReviews.Where(x => x.IdReview == idReview).SingleOrDefault();
+                if (review != null)
+                {
+                    db.PlacesReviews.Remove(review);
+                    db.SaveChanges();
+                }
+                UpdateRatingAfterReview(review.IdPlace);
+            }
+        }
+
         public static void UpdateRatingAfterReview(int idPlace)
         {
             using (var db = new EntitiesContext())

@@ -1,9 +1,11 @@
 ﻿using Business.Managers;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -27,6 +29,16 @@ namespace WebApp
             get
             {
                 return User.Identity.GetUserId();
+            }
+        }
+        public bool IsUserAdmin
+        {
+            get
+            {
+                var roles = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().GetRoles(UserId).ToList();
+                foreach (string role in roles)
+                    if (role == "Admin") return true;
+                return false;
             }
         }
         public string Email
@@ -98,6 +110,35 @@ namespace WebApp
         protected void lwReviews_DataBinding(object sender, EventArgs e)
         {
             DataListPlace.DataBind();
+        }
+
+        protected void btnDeleteReview_Click(object sender, EventArgs e)
+        {
+            LinkButton myButton = (LinkButton)sender;
+            int idReview = Convert.ToInt32(myButton.CommandArgument);
+            PlacesManager.DeleteReview(idReview);
+            lwReviews.DataBind();
+        }
+
+        protected void lwReviews_DataBound(object sender, EventArgs e)
+        {
+            ListView lw = (ListView)sender;
+            foreach (var item in lw.Items)
+            {
+                if (item.ItemType == ListViewItemType.DataItem)
+                {
+                    LinkButton btn = (LinkButton)item.FindControl("btnDeleteReview");
+                    HiddenField hf = (HiddenField)item.FindControl("IdUserField");
+                    if (hf.Value == UserId || IsUserAdmin)
+                    {
+                        btn.Visible = true;
+                    }
+                    else
+                    {
+                        btn.Visible = false;
+                    }
+                }
+            }
         }
     }
 }
