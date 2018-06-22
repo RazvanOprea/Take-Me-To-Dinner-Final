@@ -76,6 +76,7 @@ namespace WebApp.Account
         {
             ChangePasswordForm.Visible = true;
             ProfileForm.Visible = false;
+            SuccesMessage.Visible = false;
         }
 
         protected void ChangePassword_Click(object sender, EventArgs e)

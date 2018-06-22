@@ -14,19 +14,19 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="custom-container">
-                    <div class="subtitle center">Manage your account</div>
+                    <div class="subtitle center">My Account</div>
                     <hr />
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                             <asp:LinkButton runat="server" ID="LinkProfile" Text="My profile" OnClick="LinkProfile_Click" Font-Size="Large"
-                                CssClass="center" Font-Bold="true" CausesValidation="false"/>
+                                CssClass="center" Font-Bold="true" CausesValidation="false" ForeColor="Black"/>
                         </div>
                     </div>
                     <hr />
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                             <asp:LinkButton runat="server" ID="LinkPassword" Text="Change password" OnClick="LinkPassword_Click" Font-Size="Large"
-                                CssClass="center" Font-Bold="true" CausesValidation="false" />
+                                CssClass="center" Font-Bold="true" CausesValidation="false" ForeColor="Black" />
                         </div>
                     </div>
                     <hr />
@@ -102,7 +102,7 @@
                        
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-3">
-                                <asp:Label ID="SuccesMessage" runat="server" Visible="false"></asp:Label>
+                                <asp:Label ID="SuccesMessage" runat="server" Visible="false" ForeColor="Red"></asp:Label>
                                 <asp:Button runat="server" ID="btnUpdateProfile" Text="Update" CssClass="btn btn-default" BackColor="#f88e1d"
                                     ForeColor="White" Width="100px" Height="40px" ValidationGroup="ProfileFormGroup" OnClick="btnUpdateProfile_Click" />
                             </div>
