@@ -15,23 +15,22 @@
             <div class="col-sm-3">
                 <div class="custom-container">
                     <div class="subtitle center">Manage your account</div>
-                    <hr />
+                    
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                             <asp:LinkButton runat="server" ID="LinkProfile" Text="Profile" OnClick="LinkProfile_Click" Font-Size="Large"
                                 CssClass="center" Font-Bold="true" CausesValidation="false"/>
                         </div>
                     </div>
-                    <hr />
+                    
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                             <asp:LinkButton runat="server" ID="LinkPassword" Text="Change password" OnClick="LinkPassword_Click" Font-Size="Large"
                                 CssClass="center" Font-Bold="true" CausesValidation="false" />
                         </div>
                     </div>
-                    <hr />
+                    
                 </div>
-
             </div>
             <div class="col-sm-9">
                 <div class="custom-container">
@@ -43,7 +42,8 @@
                             <div class="col-sm-offset-4 col-sm-8 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-                                    <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" placeholder="Enter your Email" ReadOnly="true"></asp:TextBox>  
+                                    <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" placeholder="Enter your Email" 
+                                        ReadOnly="true"></asp:TextBox>  
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
                                         CssClass="text-danger" ErrorMessage="The email field is required." ValidationGroup="ProfileFormGroup" />
                                 </div>
@@ -55,12 +55,58 @@
                             <div class="col-sm-offset-4 col-sm-8 col-xs-12">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user-secret" aria-hidden="true"></i></span>
-                                    <asp:TextBox runat="server" ID="Role" CssClass="form-control" placeholder="Enter your Role" ReadOnly="true"></asp:TextBox>  
+                                    <asp:TextBox runat="server" ID="Role" CssClass="form-control" placeholder="Enter your Role" 
+                                        ReadOnly="true"></asp:TextBox>  
                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="Role"
-                                        CssClass="text-danger" ErrorMessage="The email field is required." ValidationGroup="ProfileFormGroup" />
+                                        CssClass="text-danger" ErrorMessage="The role field is required." ValidationGroup="ProfileFormGroup" />
                                 </div>
                             </div>
                         </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-offset-4 col-sm-8 col-xs-12">
+                                <asp:Label runat="server" ID="lblCities" Text="City" Font-Bold="true"></asp:Label>
+                                <asp:dropdownlist id="ddlCities" runat="server" DataSourceID="ldscities" DataTextField="name" DataValueField="idcity"
+                                        CssClass="form-control dropdown-cities" AutoPostBack="false" Width="320px" >
+                                </asp:dropdownlist>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-offset-4 col-sm-8 col-xs-12">
+                                <asp:Label runat="server" ID="lblRating" Text="Minimum rating" Font-Bold="true"></asp:Label>
+                                <asp:dropdownlist id="ddlRating" runat="server" CssClass="form-control" AutoPostBack="false" Width="320px" >
+                                    <asp:ListItem Text="1" Value="1" Selected="True" />
+                                    <asp:ListItem Text="2" Value="2" />
+                                    <asp:ListItem Text="3" Value="3" />
+                                    <asp:ListItem Text="4" Value="4" />
+                                    <asp:ListItem Text="5" Value="5" />
+                                </asp:dropdownlist>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-offset-4 col-sm-3 col-xs-12">
+                                <asp:Label runat="server" AssociatedControlID="txtMinPrice" Text="Min price"></asp:Label>
+                                <asp:TextBox runat="server" ID="txtMinPrice" CssClass="form-control" placeholder="Min" TextMode="Number" Width="100px"></asp:TextBox>  
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtMinPrice"
+                                    CssClass="text-danger" ErrorMessage="The min price field is required." ValidationGroup="ProfileFormGroup" />
+                            </div>
+                            <div class="col-sm-3 col-xs-12">
+                                <asp:Label runat="server" AssociatedControlID="txtMinPrice" Text="Max price" ></asp:Label>
+                                <asp:TextBox runat="server" ID="txtMaxPrice" CssClass="form-control" placeholder="Max" TextMode="Number" Width="100px" ></asp:TextBox>  
+                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtMaxPrice"
+                                    CssClass="text-danger" ErrorMessage="The max price field is required." ValidationGroup="ProfileFormGroup" />
+                            </div>
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col-sm-offset-4 col-sm-3">
+                                <asp:Button runat="server" Text="Update" CssClass="btn btn-default" BackColor="#f88e1d"
+                                    ForeColor="White" Width="100px" Height="40px" ValidationGroup="ProfileFormGroup" />
+                            </div>
+                        </div>
+                        
                     </asp:PlaceHolder>
                     <%-- SOME DELIMITATION --%>
                     <asp:PlaceHolder runat="server" ID="ChangePasswordForm" Visible="false">
@@ -121,6 +167,13 @@
         </div>
         
     </div>
+
+    <asp:LinqDataSource
+        ID="ldsCities"
+        runat="server"
+        ContextTypeName="Business.EntitiesContext"
+        TableName="Cities">
+    </asp:LinqDataSource>
     <%--<div class="row">
         <div class="col-md-12">
             <div class="form-horizontal">

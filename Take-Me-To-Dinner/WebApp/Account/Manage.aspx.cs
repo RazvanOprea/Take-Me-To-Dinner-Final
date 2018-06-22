@@ -14,16 +14,51 @@ namespace WebApp.Account
 {
     public partial class Manage : System.Web.UI.Page
     {
-        
+        public string UserId
+        {
+            get
+            {
+                return User.Identity.GetUserId();
+            }
+        }
+        public string UserRole
+        {
+            get
+            {
+                return Context.GetOwinContext().GetUserManager<ApplicationUserManager>().GetRoles(UserId).FirstOrDefault().ToString();
+                
+            }
+        }
+        public string UserEmail
+        {
+            get
+            {
+                return User.Identity.GetUserName();
+            }
+        }
+
         protected void Page_Load()
         {
-            ErrorMessage.Text = "";
+            Email.Text = UserEmail;
+            Role.Text = UserRole;
+            //Role.ForeColor = (Role.Text == "Admin" ? System.Drawing.Color.Red : System.Drawing.Color.Black);
+        }
+
+        protected string RoleColor(string userRole)
+        {
+            switch (userRole)
+            {
+                case "Admin": return "Red";
+                case "Partner": return "Green";
+                default: return "Black";
+            }
         }
 
         protected void LinkProfile_Click(object sender, EventArgs e)
         {
             ProfileForm.Visible = true;
             ChangePasswordForm.Visible = false;
+            ErrorMessage.Text = "";
 
         }
 
