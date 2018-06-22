@@ -232,6 +232,7 @@
     <Content Include="Content\jsImgSlider\themes\1\bullet.png" />
     <Content Include="Content\jsImgSlider\themes\1\js-image-slider.css" />
     <Content Include="Content\jsImgSlider\themes\1\js-image-slider.js" />
+    <Content Include="Content\ManageAccount.css" />
     <Content Include="Content\SearchPage.css" />
     <Content Include="Content\ShowDetails.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
