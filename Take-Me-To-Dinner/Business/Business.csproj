@@ -83,6 +83,7 @@
       <DependentUpon>Entities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Managers\PlacesManager.cs" />
+    <Compile Include="Managers\UserProfileManager.cs" />
     <Compile Include="MostWantedPlace.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -99,6 +100,9 @@
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserProfile.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserSearchHistory.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

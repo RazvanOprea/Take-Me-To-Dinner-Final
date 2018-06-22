@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using Business;
+using Business.Managers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -39,18 +41,26 @@ namespace WebApp.Account
 
         protected void Page_Load()
         {
-            Email.Text = UserEmail;
-            Role.Text = UserRole;
-            //Role.ForeColor = (Role.Text == "Admin" ? System.Drawing.Color.Red : System.Drawing.Color.Black);
+            if (!IsPostBack)
+                ProfilePageInit();
+            
         }
 
-        protected string RoleColor(string userRole)
+        protected void ProfilePageInit()
         {
-            switch (userRole)
+            Email.Text = UserEmail;
+            Role.Text = UserRole;
+            if (UserProfileManager.HasUserCustomProfile(UserId))
             {
-                case "Admin": return "Red";
-                case "Partner": return "Green";
-                default: return "Black";
+                UserProfile profile = UserProfileManager.GetUserProfile(UserId);
+                txtMinPrice.Text = profile.MinPrice.ToString();
+                txtMaxPrice.Text = profile.MaxPrice.ToString();
+                //ddlCities.Items.FindByText(profile.City.ToString()).Selected = true;
+                ddlCities.SelectedIndex = (int)profile.IdCity - 1;
+                ddlRating.SelectedIndex = (int)profile.MinRating - 1;
+                //dropdownlist.ClearSelection(); //making sure the previous selection has been cleared
+                //dropdownlist.Items.FindByValue(value).Selected = true;
+                
             }
         }
 
@@ -95,6 +105,22 @@ namespace WebApp.Account
             {
                 ModelState.AddModelError("", error);
             }
+        }
+
+        protected void btnUpdateProfile_Click(object sender, EventArgs e)
+        {
+            UserProfile profile = new UserProfile();
+            profile.IdUser = UserId;
+            profile.IdCity = Convert.ToInt32(ddlCities.SelectedItem.Value);
+            profile.City = ddlCities.SelectedItem.Text;
+            profile.MinRating = Convert.ToInt32(ddlRating.SelectedItem.Value);
+            profile.MinPrice = Convert.ToInt32(txtMinPrice.Text);
+            profile.MaxPrice = Convert.ToInt32(txtMaxPrice.Text);
+            UserProfileManager.UpdateProfile(profile);
+
+            SuccesMessage.Text = "Profile successfully updated";
+            SuccesMessage.Visible = true;;
+
         }
     }
 }

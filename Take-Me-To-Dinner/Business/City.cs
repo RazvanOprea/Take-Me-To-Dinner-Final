@@ -18,6 +18,7 @@ namespace Business
         public City()
         {
             this.Places = new HashSet<Place>();
+            this.UserProfiles = new HashSet<UserProfile>();
         }
     
         public int IdCity { get; set; }
@@ -25,5 +26,7 @@ namespace Business
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Place> Places { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserProfile> UserProfiles { get; set; }
     }
 }

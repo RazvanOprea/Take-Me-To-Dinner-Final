@@ -74,6 +74,18 @@
           <Property Name="IdPlaceType" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="nvarchar" MaxLength="128" />
+          <Property Name="IdCity" Type="int" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="MinRating" Type="int" />
+          <Property Name="MinPrice" Type="int" />
+          <Property Name="MaxPrice" Type="int" />
+        </EntityType>
         <EntityType Name="UserSearchHistory">
           <Key>
             <PropertyRef Name="IdSearch" />
@@ -130,6 +142,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserProfile_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="IdCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserSearchHistory_Places">
           <End Role="Places" Type="Self.Places" Multiplicity="1" />
           <End Role="UserSearchHistory" Type="Self.UserSearchHistory" Multiplicity="*" />
@@ -149,6 +173,7 @@
           <EntitySet Name="PlacesPhotos" EntityType="Self.PlacesPhotos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlacesReviews" EntityType="Self.PlacesReviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PlacesTypes" EntityType="Self.PlacesTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserSearchHistory" EntityType="Self.UserSearchHistory" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_MostWantedPlaces_Places" Association="Self.FK_MostWantedPlaces_Places">
             <End Role="Places" EntitySet="Places" />
@@ -166,6 +191,10 @@
             <End Role="Places" EntitySet="Places" />
             <End Role="PlacesReviews" EntitySet="PlacesReviews" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_Cities" Association="Self.FK_UserProfile_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserSearchHistory_Places" Association="Self.FK_UserSearchHistory_Places">
             <End Role="Places" EntitySet="Places" />
             <End Role="UserSearchHistory" EntitySet="UserSearchHistory" />
@@ -182,6 +211,7 @@
           <Property Name="IdCity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Places" Relationship="Self.FK_Places_Cities" FromRole="Cities" ToRole="Places" />
+          <NavigationProperty Name="UserProfiles" Relationship="EntitiesModel.FK_UserProfile_Cities" FromRole="City" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="MostWantedPlace">
           <Key>
@@ -325,6 +355,11 @@
             <End Role="Place" EntitySet="Places" />
             <End Role="PlacesReview" EntitySet="PlacesReviews" />
           </AssociationSet>
+          <EntitySet Name="UserProfiles" EntityType="EntitiesModel.UserProfile" />
+          <AssociationSet Name="FK_UserProfile_Cities" Association="EntitiesModel.FK_UserProfile_Cities">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="PlacesReview">
           <Key>
@@ -348,6 +383,31 @@
             </Principal>
             <Dependent Role="PlacesReview">
               <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IdCity" Type="Int32" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MinRating" Type="Int32" />
+          <Property Name="MinPrice" Type="Int32" />
+          <Property Name="MaxPrice" Type="Int32" />
+          <NavigationProperty Name="City1" Relationship="EntitiesModel.FK_UserProfile_Cities" FromRole="UserProfile" ToRole="City" />
+        </EntityType>
+        <Association Name="FK_UserProfile_Cities">
+          <End Type="EntitiesModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="EntitiesModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="IdCity" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -438,6 +498,19 @@
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
                 <ScalarProperty Name="IdReview" ColumnName="IdReview" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="EntitiesModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
+                <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
+                <ScalarProperty Name="MinRating" ColumnName="MinRating" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -3,7 +3,7 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link href="../Content/ManageAccount.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/ManageAccount.css?v=2" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         function pageLoad() {
             $('.body-content').hide().show();
@@ -15,21 +15,21 @@
             <div class="col-sm-3">
                 <div class="custom-container">
                     <div class="subtitle center">Manage your account</div>
-                    
+                    <hr />
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <asp:LinkButton runat="server" ID="LinkProfile" Text="Profile" OnClick="LinkProfile_Click" Font-Size="Large"
+                            <asp:LinkButton runat="server" ID="LinkProfile" Text="My profile" OnClick="LinkProfile_Click" Font-Size="Large"
                                 CssClass="center" Font-Bold="true" CausesValidation="false"/>
                         </div>
                     </div>
-                    
+                    <hr />
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                             <asp:LinkButton runat="server" ID="LinkPassword" Text="Change password" OnClick="LinkPassword_Click" Font-Size="Large"
                                 CssClass="center" Font-Bold="true" CausesValidation="false" />
                         </div>
                     </div>
-                    
+                    <hr />
                 </div>
             </div>
             <div class="col-sm-9">
@@ -102,8 +102,9 @@
                        
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-3">
-                                <asp:Button runat="server" Text="Update" CssClass="btn btn-default" BackColor="#f88e1d"
-                                    ForeColor="White" Width="100px" Height="40px" ValidationGroup="ProfileFormGroup" />
+                                <asp:Label ID="SuccesMessage" runat="server" Visible="false"></asp:Label>
+                                <asp:Button runat="server" ID="btnUpdateProfile" Text="Update" CssClass="btn btn-default" BackColor="#f88e1d"
+                                    ForeColor="White" Width="100px" Height="40px" ValidationGroup="ProfileFormGroup" OnClick="btnUpdateProfile_Click" />
                             </div>
                         </div>
                         
