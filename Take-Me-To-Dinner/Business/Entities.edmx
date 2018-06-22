@@ -62,10 +62,10 @@
           <Property Name="IdReview" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPlace" Type="int" Nullable="false" />
           <Property Name="IdUser" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="EmailUser" Type="nvarchar" MaxLength="128" />
-          <Property Name="Review" Type="nvarchar(max)" />
-          <Property Name="Rating" Type="int" />
-          <Property Name="Date" Type="datetime" />
+          <Property Name="EmailUser" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Review" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="PlacesTypes">
           <Key>
@@ -333,10 +333,10 @@
           <Property Name="IdReview" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdPlace" Type="Int32" Nullable="false" />
           <Property Name="IdUser" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="EmailUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Review" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Rating" Type="Int32" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="EmailUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Review" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" Nullable="false" />
           <NavigationProperty Name="Place" Relationship="EntitiesModel.FK_PlacesReviews_Places" FromRole="PlacesReview" ToRole="Place" />
         </EntityType>
         <Association Name="FK_PlacesReviews_Places">

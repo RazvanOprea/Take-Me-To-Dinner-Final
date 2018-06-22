@@ -19,8 +19,8 @@ namespace Business
         public string IdUser { get; set; }
         public string EmailUser { get; set; }
         public string Review { get; set; }
-        public Nullable<int> Rating { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
+        public int Rating { get; set; }
+        public System.DateTime Date { get; set; }
     
         public virtual Place Place { get; set; }
     }

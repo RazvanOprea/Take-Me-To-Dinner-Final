@@ -69,5 +69,54 @@ namespace Business.Managers
             }
         }
 
+        public static void AddReview(int idPlace, string idUser, string email, string review, int rating, DateTime date)
+        {
+            PlacesReview rev = new PlacesReview{
+                IdPlace = idPlace,
+                IdUser = idUser,
+                EmailUser = email,
+                Review = review,
+                Rating = rating,
+                Date = date };
+
+            using (var db = new EntitiesContext())
+            {
+                db.PlacesReviews.Add(rev);
+                db.SaveChanges();
+            }
+            UpdateRatingAfterReview(idPlace);
+        }
+
+        public static void UpdateRatingAfterReview(int idPlace)
+        {
+            using (var db = new EntitiesContext())
+            {
+                List<PlacesReview> reviews = db.PlacesReviews.Where(x => x.IdPlace == idPlace).ToList();
+                int sum = 0;
+                foreach (var review in reviews)
+                {
+                    sum = sum + review.Rating;
+                }
+                float ratingFloat = (float)sum / reviews.Count;
+                int rating = (int)Math.Round(ratingFloat);
+                Place place = db.Places.SingleOrDefault(x => x.IdPlace == idPlace);
+                place.Rating = rating;
+                place.RatingFloat = Convert.ToDouble(ratingFloat.ToString("0.0"));
+                db.SaveChanges();
+
+            }
+        }
+        
+        public static bool UserReviewedBefore(int idPlace, string userId)
+        {
+            using (var db = new EntitiesContext())
+            {
+                var reviews = db.PlacesReviews.Where(x => x.IdPlace == idPlace && x.IdUser == userId).ToList();
+                if (reviews.Count > 0)
+                    return true;
+                return false;
+            }
+        }
+
     }
 }

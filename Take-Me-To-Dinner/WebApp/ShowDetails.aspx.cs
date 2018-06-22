@@ -1,4 +1,5 @@
 ﻿using Business.Managers;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,27 @@ namespace WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Request.IsAuthenticated)
+            {
+                AddReviewForm.Visible = false;
+            }
             if (!IsPostBack)
             {
                 Session["placeId"] = Request.QueryString["placeId"];
+            }
+        }
+        public string UserId
+        {
+            get
+            {
+                return User.Identity.GetUserId();
+            }
+        }
+        public string Email
+        {
+            get
+            {
+                return User.Identity.GetUserName();
             }
         }
 
@@ -56,6 +75,29 @@ namespace WebApp
         protected void odsReviews_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             e.InputParameters["placeId"] = Session["placeId"];
+        }
+
+        protected void btnReview_Click(object sender, EventArgs e)
+        {
+            int idPlace = Convert.ToInt32(Session["placeId"]);
+            if (PlacesManager.UserReviewedBefore(idPlace, UserId))
+            {
+                ErrorMessage.Text = "You already have a review for this place";
+                ErrorMessage.Visible = true;
+            }
+            else
+            {
+                ErrorMessage.Visible = false;
+                int rating = Convert.ToInt32(ddlReview.SelectedItem.Value);
+                PlacesManager.AddReview(idPlace, UserId, Email, txtReview.Text, rating, DateTime.Now);
+                txtReview.Text = null;
+                lwReviews.DataBind();
+            }
+        }
+
+        protected void lwReviews_DataBinding(object sender, EventArgs e)
+        {
+            DataListPlace.DataBind();
         }
     }
 }
