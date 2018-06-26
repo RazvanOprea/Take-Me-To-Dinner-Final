@@ -1,4 +1,5 @@
 ﻿using Business.Managers;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,13 @@ namespace WebApp
             {
                 Session["cityId"] = Request.QueryString["cityId"];
                 Session["rating"] = 1;
+            }
+        }
+        public string UserId
+        {
+            get
+            {
+                return User.Identity.GetUserId();
             }
         }
 
@@ -55,6 +63,11 @@ namespace WebApp
         {
             Button myButton = (Button)sender;
             int idPlace = Convert.ToInt32(myButton.CommandArgument.ToString());
+            if (UserId != null)
+            {
+                PlacesManager.AddUserSearchHistory(idPlace, UserId, DateTime.Now);
+            }
+            
             Response.Redirect("ShowDetails.aspx?placeId=" + idPlace);
         }
     }

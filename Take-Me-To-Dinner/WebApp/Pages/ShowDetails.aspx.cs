@@ -71,8 +71,10 @@ namespace WebApp
 
         public string ReviewFormat(string email, object date)
         {
+            int index = email.IndexOf("@");
+            string username = email.Substring(0, index);
             DateTime newDate = (DateTime)date;
-            return "Posted by " + email + " on " + newDate.ToString("dd/MM/yyyy");
+            return "Posted by " + username + " on " + newDate.ToString("dd/MM/yyyy");
         }
 
         protected void linkWebsite_Click(object sender, EventArgs e)

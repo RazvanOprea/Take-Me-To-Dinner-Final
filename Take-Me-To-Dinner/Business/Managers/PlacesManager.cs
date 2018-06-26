@@ -132,5 +132,15 @@ namespace Business.Managers
             }
         }
 
+        public static void AddUserSearchHistory(int idPlace, string userId, DateTime date)
+        {
+            UserSearchHistory ush = new UserSearchHistory { IdPlace = idPlace, IdUser = userId, SearchDate = date };
+            using (var db = new EntitiesContext())
+            {
+                db.UserSearchHistories.Add(ush);
+                db.SaveChanges();
+            }
+        }
+
     }
 }

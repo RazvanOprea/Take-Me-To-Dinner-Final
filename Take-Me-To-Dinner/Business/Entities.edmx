@@ -93,6 +93,7 @@
           <Property Name="IdSearch" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUser" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="IdPlace" Type="int" Nullable="false" />
+          <Property Name="SearchDate" Type="datetime" />
         </EntityType>
         <Association Name="FK_MostWantedPlaces_Places">
           <End Role="Places" Type="Self.Places" Multiplicity="1" />
@@ -278,6 +279,7 @@
           <Property Name="IdUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdPlace" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Place" Relationship="Self.FK_UserSearchHistory_Places" FromRole="UserSearchHistory" ToRole="Places" />
+          <Property Name="SearchDate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_Places_Cities">
           <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
@@ -482,6 +484,7 @@
           <EntitySetMapping Name="UserSearchHistories">
             <EntityTypeMapping TypeName="EntitiesModel.UserSearchHistory">
               <MappingFragment StoreEntitySet="UserSearchHistory">
+                <ScalarProperty Name="SearchDate" ColumnName="SearchDate" />
                 <ScalarProperty Name="IdSearch" ColumnName="IdSearch" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />

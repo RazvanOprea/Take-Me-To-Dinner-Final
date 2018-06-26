@@ -17,6 +17,7 @@ namespace Business
         public int IdSearch { get; set; }
         public string IdUser { get; set; }
         public int IdPlace { get; set; }
+        public Nullable<System.DateTime> SearchDate { get; set; }
     
         public virtual Place Place { get; set; }
     }
