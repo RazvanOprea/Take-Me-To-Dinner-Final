@@ -16,25 +16,6 @@ namespace WebApp
 {
     public class EmailService : IIdentityMessageService
     {
-        //public async Task SendAsync(IdentityMessage message)
-        //{
-        //    // convert IdentityMessage to a MailMessage
-        //    var email =
-        //       new MailMessage(new MailAddress("noreply@take-me-to-dinner.com", "(Account Confirmation)"),
-        //       new MailAddress(message.Destination))
-        //       {
-        //           Subject = message.Subject,
-        //           Body = message.Body,
-        //           IsBodyHtml = true,
-        //       };
-
-
-        //    using (var client = new SmtpClient()) // SmtpClient configuration comes from config file
-        //    {
-        //        client.Port = 587;
-        //        await client.SendMailAsync(email);
-        //    }
-        //}
         public Task SendAsync(IdentityMessage message)
         {
             return configSendGridasync(message);
