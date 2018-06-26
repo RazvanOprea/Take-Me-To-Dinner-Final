@@ -5,9 +5,9 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="Content/ShowDetails.css?v=7" rel="stylesheet" type="text/css" />
-    <link href="Content/jsImgSlider/themes/1/js-image-slider.css?v=14" rel="stylesheet" type="text/css" />
-    <script src="Content/jsImgSlider/themes/1/js-image-slider.js" type="text/javascript"></script>
+    <link href="../Content/ShowDetails.css?v=1" rel="stylesheet" type="text/css" />
+    <link href="../Content/jsImgSlider/themes/1/js-image-slider.css" rel="stylesheet" type="text/css" />
+    <script src="../Content/jsImgSlider/themes/1/js-image-slider.js" type="text/javascript"></script>
 
     <div class="container item-container">
         <br /> <br />
@@ -38,7 +38,7 @@
                     <div class="blank_row"></div>
                     <div class="row">
                         <div class="col-sm-11 col-xs-12">
-                            <asp:Image runat="server" ID="imgRating" ImageUrl='<%# Eval("Rating", "~/Content/Images/Rating/Rating{0}.png") %>' 
+                            <asp:Image runat="server" ID="imgRating" ImageUrl='<%# Eval("Rating", "../Content/Images/Rating/Rating{0}.png") %>' 
                                 Height="20px" Width="120px" CssClass="rating-img col-xs-center" ToolTip='<%#Eval("RatingFloat") %>'/>
                         </div>
                     </div>
@@ -154,10 +154,10 @@
                 <h3>Add review</h3>
             </div>
             <div class="row">
-                <div class="col-sm-2 col-xs-3 custom-margin">
+                <div class="col-sm-2 col-xs-6 custom-margin">
                     RATE RESTAURNAT:
                 </div>
-                <div class="col-sm-2 col-xs-3">
+                <div class="col-sm-2 col-xs-6 custom-margin-xs">
                     <span class="glyphicon glyphicon-star" style="color:#ffd800" />
                     <asp:DropDownList runat="server" ID="ddlReview" Width="40px" ForeColor="Black">
                         <asp:ListItem Text="1" Value="1" Selected="True" />

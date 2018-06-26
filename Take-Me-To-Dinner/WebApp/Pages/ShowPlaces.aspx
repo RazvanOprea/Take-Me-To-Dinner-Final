@@ -4,7 +4,7 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="Content/ShowPlaces.css?version=35" />
+    <link rel="stylesheet" href="../Content/ShowPlaces.css?version=35" />
     
 <div class="container-fluid">    
   <div class="row content">

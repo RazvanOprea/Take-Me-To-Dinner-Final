@@ -84,6 +84,14 @@
     </Compile>
     <Compile Include="Managers\PlacesManager.cs" />
     <Compile Include="Managers\UserProfileManager.cs" />
+    <Compile Include="Models\CityModel.cs" />
+    <Compile Include="Models\MostWantedPlaceModel.cs" />
+    <Compile Include="Models\PlaceModel.cs" />
+    <Compile Include="Models\PlacesPhotoModel.cs" />
+    <Compile Include="Models\PlacesReviewModel.cs" />
+    <Compile Include="Models\PlacesTypeModel.cs" />
+    <Compile Include="Models\UserProfileModel.cs" />
+    <Compile Include="Models\UserSearchHistoryModel.cs" />
     <Compile Include="MostWantedPlace.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -147,5 +155,6 @@
       <LastGenOutput>Entities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

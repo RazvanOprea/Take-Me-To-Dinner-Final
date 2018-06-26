@@ -35,10 +35,15 @@ namespace WebApp
         {
             get
             {
-                var roles = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().GetRoles(UserId).ToList();
-                foreach (string role in roles)
-                    if (role == "Admin") return true;
-                return false;
+                if (UserId != null)
+                {
+                    var roles = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().GetRoles(UserId).ToList();
+                    foreach (string role in roles)
+                        if (role == "Admin") return true;
+                    return false;
+                }
+                else
+                    return false;
             }
         }
         public string Email

@@ -19,7 +19,7 @@ namespace WebApp
 
         protected void ddlCities_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Redirect("ShowPlaces.aspx?cityId=" + ddlCities.SelectedItem.Value);
+            Response.Redirect("Pages/ShowPlaces.aspx?cityId=" + ddlCities.SelectedItem.Value);
         }
 
         protected void ddlCities_Init(object sender, EventArgs e)
