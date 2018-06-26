@@ -236,6 +236,7 @@
     <Content Include="Content\SearchPage.css" />
     <Content Include="Content\ShowDetails.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Pages\SearchPage.aspx" />
     <Content Include="Pages\ShowDetails.aspx" />
     <Content Include="Pages\ShowPlaces.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -425,6 +426,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Pages\SearchPage.aspx.cs">
+      <DependentUpon>SearchPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SearchPage.aspx.designer.cs">
+      <DependentUpon>SearchPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ShowDetails.aspx.cs">
       <DependentUpon>ShowDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
