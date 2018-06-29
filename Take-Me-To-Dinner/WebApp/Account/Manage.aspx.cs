@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -246,5 +249,39 @@ namespace WebApp.Account
             manager.SendEmail(GetAdminId(), "Partnership", "User " + UserEmail + " made a partner request.");
         }
 
+        protected void btnAddPlace_Click(object sender, EventArgs e)
+        {
+            // Check file exist or not  
+            if (PlaceUploadPhoto.PostedFile != null)
+            {
+                // Check the extension of image  
+                string extension = Path.GetExtension(PlaceUploadPhoto.FileName);
+                if (extension.ToLower() == ".png" || extension.ToLower() == ".jpg")
+                {
+                    Stream strm = PlaceUploadPhoto.PostedFile.InputStream;
+                    using (var image = System.Drawing.Image.FromStream(strm))
+                    {
+                        // Print Original Size of file (Height or Width)   
+                        
+                        int newWidth = 240; // New Width of Image in Pixel  
+                        int newHeight = 240; // New Height of Image in Pixel  
+                        var thumbImg = new Bitmap(newWidth, newHeight);
+                        var thumbGraph = Graphics.FromImage(thumbImg);
+                        thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+                        thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+                        thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        var imgRectangle = new Rectangle(0, 0, newWidth, newHeight);
+                        thumbGraph.DrawImage(image, imgRectangle);
+                        // Save the file  
+                        string targetPath = Server.MapPath(@"~\Content\Images\") + PlaceUploadPhoto.FileName;
+                        thumbImg.Save(targetPath, image.RawFormat);
+                        // Print new Size of file (height or Width)  
+                        //Label2.Text = thumbImg.Size.ToString();
+                        //Show Image  
+                        //Image1.ImageUrl = @"~\Images\" + PlaceUploadPhoto.FileName;
+                    }
+                }
+            }
+        }
     }
 }

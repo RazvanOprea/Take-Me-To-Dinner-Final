@@ -8,6 +8,45 @@
         function pageLoad() {
             $('.body-content').hide().show();
         }
+        var validFilesTypes = ["bmp", "gif", "png", "jpg", "jpeg"];
+
+        function ValidateFile() {
+
+            var file = document.getElementById("<%=PlaceUploadPhoto.ClientID%>");
+
+        var label = document.getElementById("<%=lblPlaceUploadPhoto%>");
+
+        var path = file.value;
+
+        var ext = path.substring(path.lastIndexOf(".") + 1, path.length).toLowerCase();
+
+        var isValidFile = false;
+
+        for (var i = 0; i < validFilesTypes.length; i++) {
+
+            if (ext == validFilesTypes[i]) {
+
+                isValidFile = true;
+
+                break;
+
+            }
+
+        }
+
+        if (!isValidFile) {
+
+            label.style.color = "red";
+
+            label.innerHTML = "Invalid File. Please upload a File with" +
+
+                " extension:\n\n" + validFilesTypes.join(", ");
+
+        }
+
+        return isValidFile;
+
+    }
     </script>
     <div class="container main-container">
         <br />
@@ -144,7 +183,7 @@
                         </div>
                         
                     </asp:PlaceHolder>
-                    <%-- SOME DELIMITATION --%>
+                    <%-- CHANGE PASSWORD --%>
                     <asp:PlaceHolder runat="server" ID="ChangePasswordForm" Visible="false">
                         <h1 class="title center">Change Password</h1>
                         <br /><br />
@@ -197,13 +236,85 @@
                      
                         
                     </asp:PlaceHolder>
-                    <%-- SOME DELIMITATION --%>
+                    <%-- ADD PLACE --%>
                     <asp:PlaceHolder runat="server" ID="AddPlaceForm" Visible="false">
                         <h1 class="title center">Add a place</h1>
                         <br /><br />
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <asp:TextBox runat="server" ID="PlaceName" CssClass="form-control" placeholder="Place name"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox runat="server" ID="PlaceAdress" CssClass="form-control" placeholder="Adress"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox runat="server" ID="PlaceTelephone" CssClass="form-control" placeholder="Telephone" TextMode="Phone"></asp:TextBox>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <asp:TextBox runat="server" ID="PlaceWebsite" CssClass="form-control" placeholder="Website"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox runat="server" ID="PlaceLat" CssClass="form-control" placeholder="Latitude" TextMode="Number"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:TextBox runat="server" ID="PlaceLong" CssClass="form-control" placeholder="Longitude" TextMode="Number"></asp:TextBox>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <asp:Label runat="server" ID="lblPlaceTypes" Text="PLACE TYPE" CssClass="center grey"></asp:Label>
+                                <asp:DropDownList runat="server" ID="ddlPlaceTypes" DataTextField="Type" DataValueField="IdPlaceType" AutoPostBack="false" 
+                                    DataSourceID="ldsTypes" CssClass="form-control"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <asp:Label runat="server" ID="lblPlaceAveragePrice" Text="AVERAGE MENU PRICE" CssClass="center grey"></asp:Label>
+                                <asp:TextBox runat="server" ID="PlaceAveragePrice" CssClass="form-control" placeholder="Avg price" TextMode="Number"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <asp:Label runat="server" ID="lblPlaceCities" Text="CHOOSE A CITY" CssClass="center grey"></asp:Label>
+                                <asp:DropDownList runat="server" ID="ddlPlaceCities" DataTextField="Name" DataValueField="IdCity" AutoPostBack="false" 
+                                    DataSourceID="ldsCities" CssClass="form-control"/>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <asp:Label runat="server" ID="lblPlaceOpenTime" Text="OPEN TIME" CssClass="center grey"></asp:Label>
+                                <asp:TextBox runat="server" ID="PlaceOpenTime" CssClass="form-control" TextMode="Time"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-3 col-sm-offset-3">
+                                <asp:Label runat="server" ID="lblPlaceCloseTime" Text="CLOSE TIME" CssClass="center grey"></asp:Label>
+                                <asp:TextBox runat="server" ID="PlaceCloseTime" CssClass="form-control" TextMode="Time"></asp:TextBox>
+                            </div>
+                            
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-9 col-sm-offset-1">
+                                <asp:TextBox runat="server" ID="PlaceDescription" CssClass="form-control" TextMode="MultiLine" Rows="3" 
+                                    placeholder="Description" Width="100%" MaxLength="300"></asp:TextBox>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <asp:FileUpload runat="server" ID="PlaceUploadPhoto"  />
+                                <asp:Label runat="server" ID="lblPlaceUploadPhoto" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <asp:Button runat="server" ID="btnAddPlace" Text="Add place" OnClick="btnAddPlace_Click" />
+                            </div>
+                        </div>
                         
                     </asp:PlaceHolder>
-                    <%-- SOME DELIMITATION --%>
+                    <%-- MANAGE USERS --%>
                     <asp:PlaceHolder runat="server" ID="ManageUsersForm" Visible="false">
                         <h1 class="title center">Users</h1>
                         <br /><br />
@@ -261,6 +372,12 @@
         runat="server"
         ContextTypeName="Business.EntitiesContext"
         TableName="Cities">
+    </asp:LinqDataSource>
+    <asp:LinqDataSource
+        ID="ldsTypes"
+        runat="server"
+        ContextTypeName="Business.EntitiesContext"
+        TableName="PlacesTypes">
     </asp:LinqDataSource>
     <asp:ObjectDataSource
         ID="odsUsers"
