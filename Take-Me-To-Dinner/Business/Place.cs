@@ -40,6 +40,7 @@ namespace Business
         public string IdPartner { get; set; }
         public string Description { get; set; }
         public string Photo { get; set; }
+        public Nullable<int> AveragePrice { get; set; }
     
         public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

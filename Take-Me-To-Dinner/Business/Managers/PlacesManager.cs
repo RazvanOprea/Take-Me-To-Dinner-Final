@@ -10,21 +10,6 @@ namespace Business.Managers
     [DataObject]
     public class PlacesManager
     {
-        public static List<Place> GetAllPlaces()
-        {
-            using (var db = new EntitiesContext())
-            {
-                return db.Places.OrderBy(x => x.Name).ToList();
-            }
-        }
-
-        public static List<Place> GetAllConfirmedPlaces()
-        {
-            using (var db = new EntitiesContext())
-            {
-                return db.Places.Where(x => x.Confirmed == true).OrderBy(x => x.Name).ToList();
-            }
-        }
 
         public static Place GetPlaceByID(int placeId)
         {
@@ -34,12 +19,12 @@ namespace Business.Managers
             }
         }
 
-        public static List<Place> GetAllPlacesByCityId(int cityId, int rating)
+        public static List<Place> GetAllPlaces(int cityId, int rating, int minPrice, int maxPrice)
         {
             using (var db = new EntitiesContext())
             {
-                // TO DO: Check if confirmed == true
-                return db.Places.Where(x => x.IdCity == cityId && x.Rating >= rating).ToList();
+                // Also check if confirmed
+                return db.Places.Where(x => x.IdCity == cityId && x.Rating >= rating && x.AveragePrice >= minPrice && x.AveragePrice<=maxPrice && x.Confirmed==true).ToList();
             }
         }
 

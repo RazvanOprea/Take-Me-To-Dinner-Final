@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -34,6 +34,7 @@
           <Property Name="Website" Type="nvarchar" MaxLength="200" />
           <Property Name="Rating" Type="int" />
           <Property Name="RatingFloat" Type="float" />
+          <Property Name="AveragePrice" Type="int" />
           <Property Name="Lat" Type="nvarchar" MaxLength="200" />
           <Property Name="Long" Type="nvarchar" MaxLength="200" />
           <Property Name="OpenTime" Type="time" Precision="3" />
@@ -201,8 +202,7 @@
             <End Role="UserSearchHistory" EntitySet="UserSearchHistory" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -251,6 +251,7 @@
           <NavigationProperty Name="PlacesPhotos" Relationship="Self.FK_PlacesPhotos_Places" FromRole="Places" ToRole="PlacesPhotos" />
           <NavigationProperty Name="PlacesReviews" Relationship="Self.FK_PlacesReviews_Places" FromRole="Places" ToRole="PlacesReviews" />
           <NavigationProperty Name="UserSearchHistories" Relationship="Self.FK_UserSearchHistory_Places" FromRole="Places" ToRole="UserSearchHistory" />
+          <Property Name="AveragePrice" Type="Int32" />
         </EntityType>
         <EntityType Name="PlacesPhoto">
           <Key>
@@ -441,6 +442,7 @@
           <EntitySetMapping Name="Places">
             <EntityTypeMapping TypeName="EntitiesModel.Place">
               <MappingFragment StoreEntitySet="Places">
+                <ScalarProperty Name="AveragePrice" ColumnName="AveragePrice" />
                 <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="IdCity" ColumnName="IdCity" />

@@ -123,5 +123,15 @@ namespace WebApp.Account
             SuccesMessage.Visible = true;;
 
         }
+
+        protected void btnResetProfile_Click(object sender, EventArgs e)
+        {
+            if (UserProfileManager.HasUserCustomProfile(UserId))
+            {
+                UserProfileManager.DeleteUserProfile(UserId);
+                Response.Redirect("Manage.aspx");
+            }
+            
+        }
     }
 }

@@ -51,5 +51,15 @@ namespace Business.Managers
                 return false;
             }
         }
+
+        public static void DeleteUserProfile(string userId)
+        {
+            using (var db = new EntitiesContext())
+            {
+                var profile = db.UserProfiles.Where(x => x.IdUser == userId).SingleOrDefault();
+                db.UserProfiles.Remove(profile);
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<link rel="stylesheet" href="../Content/ShowPlaces.css?version=35" />
+<link rel="stylesheet" href="../Content/ShowPlaces.css?version=38" />
 <script type="text/javascript">
     function pageLoad() {
         $('.body-content').hide().show();
@@ -27,23 +27,24 @@
         <div class="blank_row"></div>
         <div class="row">
             <div class="col-sm-12 col-xs-12">
-                <asp:Label runat="server" ID="lblPrice" Text="AVERAGE PRICE" CssClass="center grey"></asp:Label>
+                <asp:Label runat="server" ID="lblPrice" Text="AVERAGE PRICE (RON)" CssClass="center grey"></asp:Label>
                 <div class="row">
                     <div class="col-sm-2 col-xs-2">
-                        <asp:TextBox ID="txtMinPrice" runat="server" Width="30" Text="10" BackColor="#f88e1d" ForeColor="White" BorderStyle="None" />
+                        <asp:TextBox ID="txtMinPrice" runat="server" Width="30" Text="0" BackColor="#f88e1d" ForeColor="White" BorderStyle="None" />
                     </div>
                     <div class="col-sm-8 col-xs-7">
                         <asp:TextBox ID="sliderTwo" runat="server" />
                         <ajaxToolkit:MultiHandleSliderExtender ID="multiHandleSliderExtenderTwo" runat="server"
                             BehaviorID="multiHandleSliderExtenderTwo"
                             TargetControlID="sliderTwo"
-                            Minimum="10"
-                            Maximum="300"
+                            Minimum="0"
+                            Maximum="100"
                             Length="170"
                             TooltipText="{0}"
                             Orientation="Horizontal"
                             EnableKeyboard="false"
-                            EnableMouseWheel="false">
+                            EnableMouseWheel="false"
+                            Increment="5">
                             <MultiHandleSliderTargets>
                                 <ajaxToolkit:MultiHandleSliderTarget ControlID="txtMinPrice" HandleCssClass="mymultihandle"/>
                                 <ajaxToolkit:MultiHandleSliderTarget ControlID="txtMaxPrice" HandleCssClass="mymultihandle"/>
@@ -51,7 +52,7 @@
                         </ajaxToolkit:MultiHandleSliderExtender>
                     </div>
                     <div class="col-sm-2 col-xs-2">
-                        <asp:TextBox ID="txtMaxPrice" runat="server" Width="30" Text="300" BackColor="#f88e1d" ForeColor="White" BorderStyle="None"/>
+                        <asp:TextBox ID="txtMaxPrice" runat="server" Width="30" Text="100" BackColor="#f88e1d" ForeColor="White" BorderStyle="None"/>
                     </div>
                 </div>
             </div>
@@ -98,8 +99,12 @@
                           <div class="col-sm-7 col-xs-11 margin-left-xs">
                               <div class="blank_row"></div>
                               <div class="row">
-                                  <div class="col-sm-11">
+                                  <div class="col-sm-8 col-xs-12">
                                       <asp:Label runat="server" ID="lblTitle" Text='<%# Item.Name %>' Font-Size="X-Large" Font-Bold="true"></asp:Label>
+                                  </div>
+                                  <div class="col-sm-3 col-xs-12 padding-top-6px">
+                                      <asp:Label runat="server" ID="lblPrice" Text='<%# Eval("AveragePrice", "{0} RON") %>' Font-Bold="true" ForeColor="#f88e1d"
+                                            Font-Size="Medium" />
                                   </div>
                               </div>
                               <div class="row">
@@ -168,11 +173,13 @@
     <asp:ObjectDataSource ID="odsPlaces" runat="server"
         TypeName="Business.Managers.PlacesManager"
         DataObjectTypeName="Business.Place"
-        SelectMethod="GetAllPlacesByCityId"
+        SelectMethod="GetAllPlaces"
         OnSelecting="odsPlaces_Selecting">
         <SelectParameters>
             <asp:Parameter Name="cityId" Type="Int32" />
             <asp:Parameter Name="rating" Type="Int32" />
+            <asp:Parameter Name="minPrice" Type="Int32" />
+            <asp:Parameter Name="maxPrice" Type="Int32" />
         </SelectParameters>
     </asp:ObjectDataSource>
 

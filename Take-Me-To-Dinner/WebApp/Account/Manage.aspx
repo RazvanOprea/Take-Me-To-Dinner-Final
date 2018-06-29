@@ -106,6 +106,19 @@
                                 <asp:Button runat="server" ID="btnUpdateProfile" Text="Update" CssClass="btn btn-default" BackColor="#f88e1d"
                                     ForeColor="White" Width="100px" Height="40px" ValidationGroup="ProfileFormGroup" OnClick="btnUpdateProfile_Click" />
                             </div>
+                            <div class="col-sm-3 col-xs-12">
+                                <asp:Button runat="server" ID="btnResetProfile" Text="Reset" CssClass="btn btn-default" BackColor="#f7f7f7" 
+                                    BorderWidth="1px" BorderStyle="Solid" BorderColor="#C0C0C0" Width="100px" Height="40px" ValidationGroup="ProfileFormGroup"
+                                    OnClick="btnResetProfile_Click" CausesValidation="false"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <asp:CompareValidator runat="server" ControlToValidate="txtMinPrice" ControlToCompare="txtMaxPrice" Operator="LessThan" 
+                                    ErrorMessage="The min price cannot be greater than max price." ValidationGroup="ProfileFormGroup" Type="Integer"/>
+                            <asp:CompareValidator runat="server" ControlToValidate="txtMaxPrice" ValueToCompare="100" Operator="LessThanEqual"
+                                ErrorMessage="The max price cannot be greater than 100." ValidationGroup="ProfileFormGroup" Type="Integer" />
+                            <asp:CompareValidator runat="server" ControlToValidate="txtMinPrice" ValueToCompare="0" Operator="GreaterThanEqual"
+                                ErrorMessage="The min price cannot be lower than 0." ValidationGroup="ProfileFormGroup" Type="Integer" />
                         </div>
                         
                     </asp:PlaceHolder>
