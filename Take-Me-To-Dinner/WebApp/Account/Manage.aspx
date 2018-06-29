@@ -30,6 +30,20 @@
                         </div>
                     </div>
                     <hr />
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            <asp:LinkButton runat="server" ID="LinkAddPlace" Text="Add Place" OnClick="LinkAddPlace_Click" Font-Size="Large"
+                                CssClass="center" Font-Bold="true" CausesValidation="false" ForeColor="Black" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            <asp:LinkButton runat="server" ID="LinkAdmin" Text="Manage Users" OnClick="LinkAdmin_Click" Font-Size="Large"
+                                CssClass="center" Font-Bold="true" CausesValidation="false" ForeColor="Black" />
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
             <div class="col-sm-9">
@@ -175,6 +189,27 @@
                      
                         
                     </asp:PlaceHolder>
+                    <%-- SOME DELIMITATION --%>
+                    <asp:PlaceHolder runat="server" ID="AddPlaceForm" Visible="false">
+                        <h1 class="title center">Add a place</h1>
+                        <br /><br />
+                        
+                    </asp:PlaceHolder>
+                    <%-- SOME DELIMITATION --%>
+                    <asp:PlaceHolder runat="server" ID="ManageUsersForm" Visible="false">
+                        <h1 class="title center">Users</h1>
+                        <br /><br />
+                        <div class="row">
+                            <asp:GridView runat="server" ID="grdUsers" Visible="true" DataKeyNames="Id">
+                                <Columns>
+                                    <asp:BoundField DataField="IdUser" ReadOnly="true" HeaderText="Id User" InsertVisible="false" SortExpression="IdUser">
+                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                    </asp:BoundField>
+
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </asp:PlaceHolder>
 
                 </div>
             </div>
@@ -188,21 +223,5 @@
         ContextTypeName="Business.EntitiesContext"
         TableName="Cities">
     </asp:LinqDataSource>
-    <%--<div class="row">
-        <div class="col-md-12">
-            <div class="form-horizontal">
-                <h4>Change your account settings</h4>
-                <hr />
-                <dl class="dl-horizontal">
-                    <dt>Password:</dt>
-                    <dd>
-                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Change]" Visible="false" ID="ChangePassword" runat="server" />
-                        <asp:HyperLink NavigateUrl="/Account/ManagePassword" Text="[Create]" Visible="false" ID="CreatePassword" runat="server" />
-                    </dd>
-                   
-                </dl>
-            </div>
-        </div>
-    </div>--%>
 
 </asp:Content>

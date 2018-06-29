@@ -31,6 +31,24 @@ namespace WebApp.Account {
         protected global::System.Web.UI.WebControls.LinkButton LinkPassword;
         
         /// <summary>
+        /// LinkAddPlace control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAddPlace;
+        
+        /// <summary>
+        /// LinkAdmin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkAdmin;
+        
+        /// <summary>
         /// ProfileForm control.
         /// </summary>
         /// <remarks>
@@ -182,6 +200,33 @@ namespace WebApp.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ErrorMessage;
+        
+        /// <summary>
+        /// AddPlaceForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder AddPlaceForm;
+        
+        /// <summary>
+        /// ManageUsersForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder ManageUsersForm;
+        
+        /// <summary>
+        /// grdUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdUsers;
         
         /// <summary>
         /// ldsCities control.

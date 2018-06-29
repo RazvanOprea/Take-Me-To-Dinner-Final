@@ -43,7 +43,7 @@ namespace WebApp.Account
         {
             if (!IsPostBack)
                 ProfilePageInit();
-            
+
         }
 
         protected void ProfilePageInit()
@@ -62,21 +62,10 @@ namespace WebApp.Account
                 //dropdownlist.Items.FindByValue(value).Selected = true;
                 
             }
-        }
-
-        protected void LinkProfile_Click(object sender, EventArgs e)
-        {
-            ProfileForm.Visible = true;
-            ChangePasswordForm.Visible = false;
-            ErrorMessage.Text = "";
-
-        }
-
-        protected void LinkPassword_Click(object sender, EventArgs e)
-        {
-            ChangePasswordForm.Visible = true;
-            ProfileForm.Visible = false;
-            SuccesMessage.Visible = false;
+            if (UserRole != "Admin")
+            {
+                LinkAdmin.Visible = false;
+            }
         }
 
         protected void ChangePassword_Click(object sender, EventArgs e)
@@ -132,6 +121,41 @@ namespace WebApp.Account
                 Response.Redirect("Manage.aspx");
             }
             
+        }
+
+        protected void LinkProfile_Click(object sender, EventArgs e)
+        {
+            ProfileForm.Visible = true;
+            ChangePasswordForm.Visible = false;
+            ErrorMessage.Text = "";
+            ManageUsersForm.Visible = false;
+            AddPlaceForm.Visible = false;
+
+        }
+
+        protected void LinkPassword_Click(object sender, EventArgs e)
+        {
+            ChangePasswordForm.Visible = true;
+            ProfileForm.Visible = false;
+            SuccesMessage.Visible = false;
+            ManageUsersForm.Visible = false;
+            AddPlaceForm.Visible = false;
+        }
+
+        protected void LinkAdmin_Click(object sender, EventArgs e)
+        {
+            ManageUsersForm.Visible = true;
+            ProfileForm.Visible = false;
+            ChangePasswordForm.Visible = false;
+            AddPlaceForm.Visible = false;
+        }
+
+        protected void LinkAddPlace_Click(object sender, EventArgs e)
+        {
+            ManageUsersForm.Visible = false;
+            ProfileForm.Visible = false;
+            ChangePasswordForm.Visible = false;
+            AddPlaceForm.Visible = true;
         }
     }
 }
