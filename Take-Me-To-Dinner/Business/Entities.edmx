@@ -5,6 +5,31 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="EntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -96,6 +121,20 @@
           <Property Name="IdPlace" Type="int" Nullable="false" />
           <Property Name="SearchDate" Type="datetime" />
         </EntityType>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MostWantedPlaces_Places">
           <End Role="Places" Type="Self.Places" Multiplicity="1" />
           <End Role="MostWantedPlaces" Type="Self.MostWantedPlaces" Multiplicity="*" />
@@ -105,6 +144,18 @@
             </Principal>
             <Dependent Role="MostWantedPlaces">
               <PropertyRef Name="IdPlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Places_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Places" Type="Self.Places" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Places">
+              <PropertyRef Name="IdPartner" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -132,6 +183,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PlacesReviews_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="PlacesReviews" Type="Self.PlacesReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlacesReviews">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PlacesReviews_Places">
           <End Role="Places" Type="Self.Places" Multiplicity="1" />
           <End Role="PlacesReviews" Type="Self.PlacesReviews" Multiplicity="*" />
@@ -144,6 +207,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserProfile_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UserProfile_Cities">
           <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
@@ -153,6 +228,18 @@
             </Principal>
             <Dependent Role="UserProfile">
               <PropertyRef Name="IdCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSearchHistory_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserSearchHistory" Type="Self.UserSearchHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSearchHistory">
+              <PropertyRef Name="IdUser" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -169,6 +256,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="EntitiesModelStoreContainer">
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MostWantedPlaces" EntityType="Self.MostWantedPlaces" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Places" EntityType="Self.Places" Schema="dbo" store:Type="Tables" />
@@ -177,9 +266,17 @@
           <EntitySet Name="PlacesTypes" EntityType="Self.PlacesTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserSearchHistory" EntityType="Self.UserSearchHistory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
           <AssociationSet Name="FK_MostWantedPlaces_Places" Association="Self.FK_MostWantedPlaces_Places">
             <End Role="Places" EntitySet="Places" />
             <End Role="MostWantedPlaces" EntitySet="MostWantedPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Places_AspNetUsers" Association="Self.FK_Places_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Places" EntitySet="Places" />
           </AssociationSet>
           <AssociationSet Name="FK_Places_Cities" Association="Self.FK_Places_Cities">
             <End Role="Cities" EntitySet="Cities" />
@@ -189,13 +286,25 @@
             <End Role="Places" EntitySet="Places" />
             <End Role="PlacesPhotos" EntitySet="PlacesPhotos" />
           </AssociationSet>
+          <AssociationSet Name="FK_PlacesReviews_AspNetUsers" Association="Self.FK_PlacesReviews_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PlacesReviews" EntitySet="PlacesReviews" />
+          </AssociationSet>
           <AssociationSet Name="FK_PlacesReviews_Places" Association="Self.FK_PlacesReviews_Places">
             <End Role="Places" EntitySet="Places" />
             <End Role="PlacesReviews" EntitySet="PlacesReviews" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_AspNetUsers" Association="Self.FK_UserProfile_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
           <AssociationSet Name="FK_UserProfile_Cities" Association="Self.FK_UserProfile_Cities">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSearchHistory_AspNetUsers" Association="Self.FK_UserSearchHistory_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserSearchHistory" EntitySet="UserSearchHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_UserSearchHistory_Places" Association="Self.FK_UserSearchHistory_Places">
             <End Role="Places" EntitySet="Places" />
@@ -252,6 +361,7 @@
           <NavigationProperty Name="PlacesReviews" Relationship="Self.FK_PlacesReviews_Places" FromRole="Places" ToRole="PlacesReviews" />
           <NavigationProperty Name="UserSearchHistories" Relationship="Self.FK_UserSearchHistory_Places" FromRole="Places" ToRole="UserSearchHistory" />
           <Property Name="AveragePrice" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="EntitiesModel.FK_Places_AspNetUsers" FromRole="Place" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="PlacesPhoto">
           <Key>
@@ -278,6 +388,7 @@
           <Property Name="Rating" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Place" Relationship="Self.FK_PlacesReviews_Places" FromRole="PlacesReviews" ToRole="Places" />
+          <NavigationProperty Name="AspNetUser" Relationship="EntitiesModel.FK_PlacesReviews_AspNetUsers" FromRole="PlacesReview" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="PlacesType">
           <Key>
@@ -298,6 +409,7 @@
           <Property Name="MinPrice" Type="Int32" />
           <Property Name="MaxPrice" Type="Int32" />
           <NavigationProperty Name="City1" Relationship="Self.FK_UserProfile_Cities" FromRole="UserProfile" ToRole="Cities" />
+          <NavigationProperty Name="AspNetUser" Relationship="EntitiesModel.FK_UserProfile_AspNetUsers" FromRole="UserProfile" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="UserSearchHistory">
           <Key>
@@ -308,6 +420,7 @@
           <Property Name="IdPlace" Type="Int32" Nullable="false" />
           <Property Name="SearchDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Place" Relationship="Self.FK_UserSearchHistory_Places" FromRole="UserSearchHistory" ToRole="Places" />
+          <NavigationProperty Name="AspNetUser" Relationship="EntitiesModel.FK_UserSearchHistory_AspNetUsers" FromRole="UserSearchHistory" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="FK_Places_Cities">
           <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
@@ -414,7 +527,122 @@
             <End Role="Places" EntitySet="Places" />
             <End Role="UserSearchHistory" EntitySet="UserSearchHistories" />
           </AssociationSet>
+          <EntitySet Name="AspNetUserRoles" EntityType="EntitiesModel.AspNetUserRole" />
+          <EntitySet Name="AspNetUsers" EntityType="EntitiesModel.AspNetUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="EntitiesModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Places_AspNetUsers" Association="EntitiesModel.FK_Places_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Place" EntitySet="Places" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PlacesReviews_AspNetUsers" Association="EntitiesModel.FK_PlacesReviews_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="PlacesReview" EntitySet="PlacesReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserProfile_AspNetUsers" Association="EntitiesModel.FK_UserProfile_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserSearchHistory_AspNetUsers" Association="EntitiesModel.FK_UserSearchHistory_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserSearchHistory" EntitySet="UserSearchHistories" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AspNetUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="EntitiesModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserRoles" Relationship="EntitiesModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserRole" />
+          <NavigationProperty Name="Places" Relationship="EntitiesModel.FK_Places_AspNetUsers" FromRole="AspNetUser" ToRole="Place" />
+          <NavigationProperty Name="PlacesReviews" Relationship="EntitiesModel.FK_PlacesReviews_AspNetUsers" FromRole="AspNetUser" ToRole="PlacesReview" />
+          <NavigationProperty Name="UserProfiles" Relationship="EntitiesModel.FK_UserProfile_AspNetUsers" FromRole="AspNetUser" ToRole="UserProfile" />
+          <NavigationProperty Name="UserSearchHistories" Relationship="EntitiesModel.FK_UserSearchHistory_AspNetUsers" FromRole="AspNetUser" ToRole="UserSearchHistory" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Type="EntitiesModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="EntitiesModel.AspNetUserRole" Role="AspNetUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Places_AspNetUsers">
+          <End Type="EntitiesModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="EntitiesModel.Place" Role="Place" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Place">
+              <PropertyRef Name="IdPartner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PlacesReviews_AspNetUsers">
+          <End Type="EntitiesModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EntitiesModel.PlacesReview" Role="PlacesReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PlacesReview">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserProfile_AspNetUsers">
+          <End Type="EntitiesModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="EntitiesModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserProfile">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserSearchHistory_AspNetUsers">
+          <End Type="EntitiesModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="EntitiesModel.UserSearchHistory" Role="UserSearchHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserSearchHistory">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -517,6 +745,32 @@
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
                 <ScalarProperty Name="IdPlace" ColumnName="IdPlace" />
                 <ScalarProperty Name="SearchDate" ColumnName="SearchDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserRoles">
+            <EntityTypeMapping TypeName="EntitiesModel.AspNetUserRole">
+              <MappingFragment StoreEntitySet="AspNetUserRoles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="EntitiesModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

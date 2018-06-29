@@ -19,6 +19,13 @@
         <AssociationConnector Association="EntitiesModel.FK_PlacesPhotos_Places" ManuallyRouted="false" />
         <AssociationConnector Association="EntitiesModel.FK_PlacesReviews_Places" ManuallyRouted="false" />
         <AssociationConnector Association="EntitiesModel.FK_UserSearchHistory_Places" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EntitiesModel.AspNetUserRole" Width="1.5" PointX="3" PointY="17.75" />
+        <EntityTypeShape EntityType="EntitiesModel.AspNetUser" Width="1.5" PointX="0.75" PointY="11.375" />
+        <AssociationConnector Association="EntitiesModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="EntitiesModel.FK_Places_AspNetUsers" />
+        <AssociationConnector Association="EntitiesModel.FK_PlacesReviews_AspNetUsers" />
+        <AssociationConnector Association="EntitiesModel.FK_UserProfile_AspNetUsers" />
+        <AssociationConnector Association="EntitiesModel.FK_UserSearchHistory_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

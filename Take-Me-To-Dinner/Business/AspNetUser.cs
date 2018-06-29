@@ -12,45 +12,40 @@ namespace Business
     using System;
     using System.Collections.Generic;
     
-    public partial class Place
+    public partial class AspNetUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Place()
+        public AspNetUser()
         {
-            this.MostWantedPlaces = new HashSet<MostWantedPlace>();
-            this.PlacesPhotos = new HashSet<PlacesPhoto>();
+            this.AspNetUserRoles = new HashSet<AspNetUserRole>();
+            this.Places = new HashSet<Place>();
             this.PlacesReviews = new HashSet<PlacesReview>();
+            this.UserProfiles = new HashSet<UserProfile>();
             this.UserSearchHistories = new HashSet<UserSearchHistory>();
         }
     
-        public int IdPlace { get; set; }
-        public string Type { get; set; }
-        public Nullable<int> IdCity { get; set; }
-        public string Name { get; set; }
-        public string Adress { get; set; }
-        public string Telephone { get; set; }
-        public string Website { get; set; }
-        public Nullable<int> Rating { get; set; }
-        public Nullable<double> RatingFloat { get; set; }
-        public string Lat { get; set; }
-        public string Long { get; set; }
-        public Nullable<System.TimeSpan> OpenTime { get; set; }
-        public Nullable<System.TimeSpan> CloseTime { get; set; }
-        public Nullable<bool> Confirmed { get; set; }
-        public string IdPartner { get; set; }
-        public string Description { get; set; }
-        public string Photo { get; set; }
-        public Nullable<int> AveragePrice { get; set; }
+        public string Id { get; set; }
+        public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string PasswordHash { get; set; }
+        public string SecurityStamp { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+        public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public int AccessFailedCount { get; set; }
+        public string UserName { get; set; }
     
-        public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MostWantedPlace> MostWantedPlaces { get; set; }
+        public virtual ICollection<AspNetUserRole> AspNetUserRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlacesPhoto> PlacesPhotos { get; set; }
+        public virtual ICollection<Place> Places { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PlacesReview> PlacesReviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserProfile> UserProfiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserSearchHistory> UserSearchHistories { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

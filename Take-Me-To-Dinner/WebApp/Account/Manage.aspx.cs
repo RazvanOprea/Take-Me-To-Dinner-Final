@@ -66,6 +66,11 @@ namespace WebApp.Account
             {
                 LinkAdmin.Visible = false;
             }
+
+            if (UserRole != "Admin" && UserRole != "Partner")
+            {
+                LinkAddPlace.Visible = false;
+            }
         }
 
         protected void ChangePassword_Click(object sender, EventArgs e)
@@ -156,6 +161,48 @@ namespace WebApp.Account
             ProfileForm.Visible = false;
             ChangePasswordForm.Visible = false;
             AddPlaceForm.Visible = true;
+        }
+
+        protected void odsUsers_Selecting(object sender, System.Web.UI.WebControls.ObjectDataSourceSelectingEventArgs e)
+        {
+
+        }
+
+        protected string GetUserRole(string userId)
+        {
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            if (manager.IsEmailConfirmed(userId))
+                return manager.GetRoles(userId).FirstOrDefault().ToString();
+            else
+                return "";
+        }
+
+        protected bool IsButtonVisible(string userId)
+        {
+            string role = GetUserRole(userId);
+            if (role == "User") return true;
+            else return false;
+        }
+
+        protected void grdUsers_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "MakePartner")
+            {
+                string id = e.CommandArgument.ToString();
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                manager.RemoveFromRole(id, "User");
+                manager.AddToRole(id, "Partner");
+                grdUsers.DataBind();
+            }
+            
+        }
+
+        protected void grdUsers_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
+        {
+            string id = grdUsers.DataKeys[e.RowIndex].Values["Id"].ToString();
+            UsersManager.DeleteUser(id);
+            grdUsers.DataBind();
+            e.Cancel = true;
         }
     }
 }

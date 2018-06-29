@@ -23,5 +23,6 @@ namespace Business
         public System.DateTime Date { get; set; }
     
         public virtual Place Place { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

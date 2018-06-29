@@ -12,17 +12,11 @@ namespace Business
     using System;
     using System.Collections.Generic;
     
-    public partial class UserProfile
+    public partial class AspNetUserRole
     {
-        public int Id { get; set; }
-        public string IdUser { get; set; }
-        public Nullable<int> IdCity { get; set; }
-        public string City { get; set; }
-        public Nullable<int> MinRating { get; set; }
-        public Nullable<int> MinPrice { get; set; }
-        public Nullable<int> MaxPrice { get; set; }
+        public string UserId { get; set; }
+        public string RoleId { get; set; }
     
-        public virtual City City1 { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
     }
 }

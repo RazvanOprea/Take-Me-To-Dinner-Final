@@ -20,5 +20,6 @@ namespace Business
         public Nullable<System.DateTime> SearchDate { get; set; }
     
         public virtual Place Place { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -199,16 +199,47 @@
                     <asp:PlaceHolder runat="server" ID="ManageUsersForm" Visible="false">
                         <h1 class="title center">Users</h1>
                         <br /><br />
-                        <div class="row">
-                            <asp:GridView runat="server" ID="grdUsers" Visible="true" DataKeyNames="Id">
-                                <Columns>
-                                    <asp:BoundField DataField="IdUser" ReadOnly="true" HeaderText="Id User" InsertVisible="false" SortExpression="IdUser">
-                                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
-                                    </asp:BoundField>
+                        
+                        <asp:GridView runat="server" ID="grdUsers" Visible="true" DataKeyNames="Id" DataSourceID="odsUsers" AutoGenerateColumns="false"
+                            SkinID="Professional" Font-Name="Verdana"
+                            Font-Size="10pt" Cellpadding="4"
+                            HeaderStyle-BackColor="#444444"
+                            HeaderStyle-ForeColor="White"
+                            AlternatingRowStyle-BackColor="#dddddd" CssClass="center"
+                            AllowSorting="false"
+                            HeaderStyle-HorizontalAlign="Center"
+                            OnRowCommand="grdUsers_RowCommand"
+                            OnRowDeleting="grdUsers_RowDeleting">
+                            <Columns>
+                                <asp:CommandField DeleteText="Delete" ShowDeleteButton="true"/>
+                                <asp:BoundField DataField="Id" ReadOnly="true" HeaderText="Id User" InsertVisible="false" SortExpression="IdUser" Visible="false">
+                                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Email" ReadOnly="true" HeaderText="Email" >
+                                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="EmailConfirmed" ReadOnly="true" HeaderText="Email confirmed" >
+                                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:BoundField>
+                                <asp:TemplateField HeaderText="Role">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblRole" runat="server" Text='<%# GetUserRole(Eval("Id").ToString())%>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Partners">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnMakePartner" runat="server" CausesValidation="false" CommandName="MakePartner"
+                                                Text="Make partner" CommandArgument='<%# Eval("Id") %>' Visible='<%# IsButtonVisible(Eval("Id").ToString())%>' />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
-                                </Columns>
-                            </asp:GridView>
-                        </div>
+
+                            </Columns>
+                        </asp:GridView>
+                        
                     </asp:PlaceHolder>
 
                 </div>
@@ -223,5 +254,14 @@
         ContextTypeName="Business.EntitiesContext"
         TableName="Cities">
     </asp:LinqDataSource>
+    <asp:ObjectDataSource
+        ID="odsUsers"
+        runat="server"
+        TypeName="Business.Managers.UsersManager"
+        DataObjectTypeName="Business.AspNetUser"
+        SelectMethod="GetAllUsers"
+        OnSelecting="odsUsers_Selecting">
+
+    </asp:ObjectDataSource>
 
 </asp:Content>

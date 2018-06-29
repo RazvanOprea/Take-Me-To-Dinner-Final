@@ -33,5 +33,7 @@ namespace Business
         public virtual DbSet<PlacesType> PlacesTypes { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<UserSearchHistory> UserSearchHistories { get; set; }
+        public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

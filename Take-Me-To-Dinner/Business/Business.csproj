@@ -64,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserRole.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="City.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
@@ -84,6 +90,7 @@
     </Compile>
     <Compile Include="Managers\PlacesManager.cs" />
     <Compile Include="Managers\UserProfileManager.cs" />
+    <Compile Include="Managers\UsersManager.cs" />
     <Compile Include="Models\CityModel.cs" />
     <Compile Include="Models\MostWantedPlaceModel.cs" />
     <Compile Include="Models\PlaceModel.cs" />
