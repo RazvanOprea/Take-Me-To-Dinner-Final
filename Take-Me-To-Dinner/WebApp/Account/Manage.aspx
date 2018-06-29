@@ -302,8 +302,14 @@
                         <br />
                         <div class="row">
                             <div class="col-sm-3 col-sm-offset-1">
+                                <asp:Label runat="server" ID="lblPlaceUploadPhoto" Text="MAIN PHOTO" CssClass="center grey" />
                                 <asp:FileUpload runat="server" ID="PlaceUploadPhoto"  />
-                                <asp:Label runat="server" ID="lblPlaceUploadPhoto" />
+                                <asp:Label runat="server" ID="lblPlaceUploadPhotoMessage" />
+                            </div>
+                            <div class="col-sm-3 col-sm-offset-3">
+                                <asp:Label runat="server" ID="lblPlaceUploadPhotos" Text="OTHER PHOTOS" CssClass="center grey" />
+                                <asp:FileUpload runat="server" ID="PlaceUploadPhotos" AllowMultiple="true" />
+                                <asp:Label runat="server" ID="lblPlaceUploadPhotosMessage" />
                             </div>
                         </div>
                         <br />

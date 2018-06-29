@@ -382,6 +382,15 @@ namespace WebApp.Account {
         protected global::System.Web.UI.WebControls.TextBox PlaceDescription;
         
         /// <summary>
+        /// lblPlaceUploadPhoto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPlaceUploadPhoto;
+        
+        /// <summary>
         /// PlaceUploadPhoto control.
         /// </summary>
         /// <remarks>
@@ -391,13 +400,40 @@ namespace WebApp.Account {
         protected global::System.Web.UI.WebControls.FileUpload PlaceUploadPhoto;
         
         /// <summary>
-        /// lblPlaceUploadPhoto control.
+        /// lblPlaceUploadPhotoMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPlaceUploadPhoto;
+        protected global::System.Web.UI.WebControls.Label lblPlaceUploadPhotoMessage;
+        
+        /// <summary>
+        /// lblPlaceUploadPhotos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPlaceUploadPhotos;
+        
+        /// <summary>
+        /// PlaceUploadPhotos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload PlaceUploadPhotos;
+        
+        /// <summary>
+        /// lblPlaceUploadPhotosMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPlaceUploadPhotosMessage;
         
         /// <summary>
         /// btnAddPlace control.

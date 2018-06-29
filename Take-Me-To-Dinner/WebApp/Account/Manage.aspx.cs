@@ -273,7 +273,7 @@ namespace WebApp.Account
                         var imgRectangle = new Rectangle(0, 0, newWidth, newHeight);
                         thumbGraph.DrawImage(image, imgRectangle);
                         // Save the file  
-                        string targetPath = Server.MapPath(@"~\Content\Images\") + PlaceUploadPhoto.FileName;
+                        string targetPath = Server.MapPath(@"~\Content\Images\Places\") + PlaceUploadPhoto.FileName;
                         thumbImg.Save(targetPath, image.RawFormat);
                         // Print new Size of file (height or Width)  
                         //Label2.Text = thumbImg.Size.ToString();
