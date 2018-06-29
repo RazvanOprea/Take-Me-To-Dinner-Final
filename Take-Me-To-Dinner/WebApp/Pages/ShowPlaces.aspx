@@ -4,7 +4,12 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <link rel="stylesheet" href="../Content/ShowPlaces.css?version=35" />
+<link rel="stylesheet" href="../Content/ShowPlaces.css?version=35" />
+<script type="text/javascript">
+    function pageLoad() {
+        $('.body-content').hide().show();
+    }
+</script>
     
 <div class="container-fluid">    
   <div class="row content">

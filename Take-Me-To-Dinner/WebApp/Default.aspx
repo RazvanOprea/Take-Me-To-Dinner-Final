@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server"  >
     
-    <link rel="stylesheet" href="Content/SearchPage.css?version=8" type="text/css" />
+    <link rel="stylesheet" href="Content/SearchPage.css?version=9" type="text/css" />
 
     <div class="container">
         <div class="row">
@@ -15,6 +15,11 @@
                             Width="80%" Height="48px" OnInit="ddlCities_Init">
                         <asp:listitem Value="" Text="Select a city for tonight..." ></asp:listitem>
                     </asp:dropdownlist>
+                    <br />
+                    <div class="center">
+                        <asp:Button runat="server" ID="btnSearch" Text="Search by my preferences" CssClass="btn btn-default btn-round" BackColor="#f88e1d"
+                                    ForeColor="White" Width="230px" Height="50px" Font-Size="Large" OnClick="btnSearch_Click" />
+                    </div>
                 </div>         
             </div>
         </div>

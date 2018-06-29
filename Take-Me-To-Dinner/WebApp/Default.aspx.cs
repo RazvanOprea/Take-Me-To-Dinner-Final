@@ -1,5 +1,6 @@
 ﻿using Business;
 using Business.Managers;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,18 @@ namespace WebApp
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!Request.IsAuthenticated)
+            {
+                btnSearch.Visible = false;
+            }
+        }
+
+        public string UserId
+        {
+            get
+            {
+                return User.Identity.GetUserId();
+            }
         }
 
         protected void ddlCities_SelectedIndexChanged(object sender, EventArgs e)
@@ -28,5 +40,20 @@ namespace WebApp
             ddl.Items[0].Attributes.Add("disabled", "disabled");
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (UserProfileManager.HasUserCustomProfile(UserId))
+            {
+                UserProfile profile = UserProfileManager.GetUserProfile(UserId);
+                Response.Redirect("Pages/ShowPlaces.aspx?cityId="+ profile.IdCity +
+                                    "&minRating=" + profile.MinRating + 
+                                    "&minPrice=" + profile.MinPrice +
+                                    "&maxPrice=" + profile.MaxPrice);
+            }
+            else
+            {
+                Response.Redirect("Account/Manage.aspx");
+            }
+        }
     }
 }
