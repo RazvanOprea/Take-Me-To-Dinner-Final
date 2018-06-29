@@ -70,6 +70,9 @@ namespace WebApp.Account
             if (UserRole != "Admin" && UserRole != "Partner")
             {
                 LinkAddPlace.Visible = false;
+                if (UserProfileManager.HasPartnerRequestedAcces(UserId) == false)
+                    BecomePartner.Visible = true;
+                    
             }
         }
 
@@ -143,6 +146,7 @@ namespace WebApp.Account
             ChangePasswordForm.Visible = true;
             ProfileForm.Visible = false;
             SuccesMessage.Visible = false;
+            lblRequestedSucces.Visible = false;
             ManageUsersForm.Visible = false;
             AddPlaceForm.Visible = false;
         }
@@ -180,9 +184,16 @@ namespace WebApp.Account
         protected bool IsButtonVisible(string userId)
         {
             string role = GetUserRole(userId);
-            if (role == "User") return true;
+            if (role == "User" || role =="Partner") return true;
             else return false;
         }
+        protected string GetLinkText(string userId)
+        {
+            string role = GetUserRole(userId);
+            if (role == "User") return "Make partner";
+            else return "Make user";
+        }
+       
 
         protected void grdUsers_RowCommand(object sender, System.Web.UI.WebControls.GridViewCommandEventArgs e)
         {
@@ -190,9 +201,18 @@ namespace WebApp.Account
             {
                 string id = e.CommandArgument.ToString();
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                manager.RemoveFromRole(id, "User");
-                manager.AddToRole(id, "Partner");
-                grdUsers.DataBind();
+                if (GetUserRole(id) == "User")
+                {
+                    manager.RemoveFromRole(id, "User");
+                    manager.AddToRole(id, "Partner");
+                    grdUsers.DataBind();
+                }
+                else
+                {
+                    manager.RemoveFromRole(id, "Partner");
+                    manager.AddToRole(id, "User");
+                    grdUsers.DataBind();
+                }
             }
             
         }
@@ -204,5 +224,27 @@ namespace WebApp.Account
             grdUsers.DataBind();
             e.Cancel = true;
         }
+
+        protected string GetAdminId()
+        {
+            var users = UsersManager.GetAllUsers();
+            foreach (var user in users)
+            {
+                var role = Context.GetOwinContext().GetUserManager<ApplicationUserManager>().GetRoles(user.Id).FirstOrDefault().ToString();
+                if (role == "Admin") return user.Id;
+            }
+            return "";
+        }
+
+        protected void BecomePartner_Click(object sender, EventArgs e)
+        {
+            UserProfileManager.SetRequestedTrue(UserId);
+            lblRequestedSucces.Text = "Partner request has been sent!";
+            lblRequestedSucces.Visible = true;
+            BecomePartner.Visible = false;
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            manager.SendEmail(GetAdminId(), "Partnership", "User " + UserEmail + " made a partner request.");
+        }
+
     }
 }

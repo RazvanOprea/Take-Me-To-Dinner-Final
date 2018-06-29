@@ -76,6 +76,24 @@ namespace WebApp.Account {
         protected global::System.Web.UI.WebControls.TextBox Role;
         
         /// <summary>
+        /// BecomePartner control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton BecomePartner;
+        
+        /// <summary>
+        /// lblRequestedSucces control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRequestedSucces;
+        
+        /// <summary>
         /// lblCities control.
         /// </summary>
         /// <remarks>

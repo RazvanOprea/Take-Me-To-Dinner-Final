@@ -3,7 +3,7 @@
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link href="../Content/ManageAccount.css?v=2" rel="stylesheet" type="text/css" />
+    <link href="../Content/ManageAccount.css?v=3" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         function pageLoad() {
             $('.body-content').hide().show();
@@ -76,6 +76,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-offset-4 col-sm-8 col-xs-12">
+                                <asp:LinkButton runat="server" ID="BecomePartner" Text="Become a partner" Font-Bold="true" Visible="false" OnClick="BecomePartner_Click" ></asp:LinkButton>
+                            </div>
+                            <div class="col-sm-offset-4 col-sm-8 col-xs-12">
+                                <asp:Label ID="lblRequestedSucces" runat="server" Visible="false" />
+                            </div>
+                         </div>
                         <br />
                         <div class="row">
                             <div class="col-sm-offset-4 col-sm-8 col-xs-12">
@@ -229,10 +237,10 @@
                                         <asp:Label ID="lblRole" runat="server" Text='<%# GetUserRole(Eval("Id").ToString())%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Partners">
+                                <asp:TemplateField HeaderText="Action">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btnMakePartner" runat="server" CausesValidation="false" CommandName="MakePartner"
-                                                Text="Make partner" CommandArgument='<%# Eval("Id") %>' Visible='<%# IsButtonVisible(Eval("Id").ToString())%>' />
+                                                Text='<%#GetLinkText(Eval("Id").ToString()) %>' CommandArgument='<%# Eval("Id") %>' Visible='<%# IsButtonVisible(Eval("Id").ToString())%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
 

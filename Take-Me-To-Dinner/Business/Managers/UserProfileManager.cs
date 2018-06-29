@@ -17,6 +17,7 @@ namespace Business.Managers
                 var dbProfile = db.UserProfiles.Where(x => x.IdUser == profile.IdUser).SingleOrDefault();
                 if (dbProfile == null)
                 {
+                    profile.RequestedAcces = false;
                     db.UserProfiles.Add(profile);
                     db.SaveChanges();
                 }
@@ -59,6 +60,38 @@ namespace Business.Managers
                 var profile = db.UserProfiles.Where(x => x.IdUser == userId).SingleOrDefault();
                 db.UserProfiles.Remove(profile);
                 db.SaveChanges();
+            }
+        }
+
+        public static bool HasPartnerRequestedAcces(string userId)
+        {
+            using (var db = new EntitiesContext())
+            {
+                var profile = db.UserProfiles.Where(x => x.IdUser == userId).SingleOrDefault();
+                if (profile == null) return false;
+                if (profile.RequestedAcces == true)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        public static void SetRequestedTrue(string userId)
+        {
+            using (var db = new EntitiesContext())
+            {
+                var profile = db.UserProfiles.Where(x => x.IdUser == userId).SingleOrDefault();
+                if (profile != null)
+                {
+                    profile.RequestedAcces = true;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    var myProfile = new UserProfile { IdUser = userId, RequestedAcces = true, IdCity=1, City="Iasi", MinPrice=0,MaxPrice=100, MinRating=1 };
+                    db.UserProfiles.Add(myProfile);
+                    db.SaveChanges();
+                }
             }
         }
     }

@@ -26,6 +26,5 @@ namespace Business.Managers
                 db.SaveChanges();
             }
         }
-
     }
 }

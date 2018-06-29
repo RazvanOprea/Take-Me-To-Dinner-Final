@@ -21,6 +21,7 @@ namespace Business
         public Nullable<int> MinRating { get; set; }
         public Nullable<int> MinPrice { get; set; }
         public Nullable<int> MaxPrice { get; set; }
+        public Nullable<bool> RequestedAcces { get; set; }
     
         public virtual City City1 { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
