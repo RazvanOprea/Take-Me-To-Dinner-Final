@@ -136,5 +136,22 @@ namespace Business.Managers
             }
         }
 
+        public static int GetLastIdPlaceForUserId(string userId)
+        {
+            using (var db = new EntitiesContext())
+            {
+                return db.Places.Where(x => x.IdPartner == userId).OrderByDescending(x=>x.IdPlace).FirstOrDefault().IdPlace;
+            }
+        }
+        
+        public static void AddPlacePhoto(PlacesPhoto photo)
+        {
+            using (var db = new EntitiesContext())
+            {
+                db.PlacesPhotos.Add(photo);
+                db.SaveChanges();
+            }
+        }
+
     }
 }

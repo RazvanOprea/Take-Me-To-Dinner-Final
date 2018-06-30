@@ -298,6 +298,43 @@ namespace WebApp.Account
                 }
             }
             PlacesManager.AddPlace(place);
+            if (PlaceUploadPhotos.PostedFiles != null)
+            {
+                foreach (var file in PlaceUploadPhotos.PostedFiles)
+                {
+                    PlacesPhoto photo = new PlacesPhoto();
+                    photo.IdPlace = PlacesManager.GetLastIdPlaceForUserId(UserId);
+                    photo.IdUser = UserId;
+                    // Check the extension of image  
+                    string extension = Path.GetExtension(file.FileName);
+                    photo.Extension = extension;
+                    photo.UploadDate = DateTime.Now;
+                    if (extension.ToLower() == ".png" || extension.ToLower() == ".jpg")
+                    {
+                        Stream strm = file.InputStream;
+                        using (var image = System.Drawing.Image.FromStream(strm))
+                        {
+                            // Resize image
+                            int newWidth = 730; // New Width of Image in Pixel  
+                            int newHeight = 346; // New Height of Image in Pixel  
+                            var thumbImg = new Bitmap(newWidth, newHeight);
+                            var thumbGraph = Graphics.FromImage(thumbImg);
+                            thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+                            thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+                            thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                            var imgRectangle = new Rectangle(0, 0, newWidth, newHeight);
+                            thumbGraph.DrawImage(image, imgRectangle);
+                            // Save the file  
+                            string filename = Guid.NewGuid().ToString() + extension;
+                            photo.Name = filename;
+                            string targetPath = Server.MapPath(@"~\Content\Images\PlacesPhotos\" + filename);
+                            photo.Path = "~/Content/Images/PlacesPhotos/" + filename;
+                            thumbImg.Save(targetPath, image.RawFormat);
+                        }
+                    }
+                    PlacesManager.AddPlacePhoto(photo);
+                }
+            }
         }
     }
 }
