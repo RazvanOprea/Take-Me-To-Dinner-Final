@@ -41,8 +41,11 @@ namespace Business.Managers
                 }
 
                 var userprofile = db.UserProfiles.Where(x => x.IdUser == userId).SingleOrDefault();
-                db.UserProfiles.Remove(userprofile);
-                db.SaveChanges();
+                if (userprofile != null)
+                {
+                    db.UserProfiles.Remove(userprofile);
+                    db.SaveChanges();
+                }
 
                 db.AspNetUsers.Remove(user);
                 db.SaveChanges();
