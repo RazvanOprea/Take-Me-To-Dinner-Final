@@ -1,5 +1,6 @@
 ﻿using Business.Managers;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,14 @@ namespace WebApp
                 Session["minRating"] = Request.QueryString["minRating"] ?? "1";
                 Session["minPrice"] = Request.QueryString["minPrice"] ?? "0";
                 Session["maxPrice"] = Request.QueryString["maxPrice"] ?? "300";
+                if (Request.QueryString["minPrice"] != null) txtMinPrice.Text = Request.QueryString["minPrice"];
+                if (Request.QueryString["maxPrice"] != null) txtMaxPrice.Text = Request.QueryString["maxPrice"];
+                if (Request.QueryString["minRating"] != null) ratingText.Text = Request.QueryString["minRating"];
+                ratingSliderControl.Text = ratingText.Text;
+                ddlCities.SelectedIndex = Convert.ToInt32(Session["cityId"]) - 1;
+
             }
+            
         }
         public string UserId
         {
@@ -73,6 +81,36 @@ namespace WebApp
             }
             
             Response.Redirect("ShowDetails.aspx?placeId=" + idPlace);
+        }
+
+        protected string GetUserRole(string userId)
+        {
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var role = manager.GetRoles(userId).FirstOrDefault().ToString();
+            if (role != null) return role;
+            else
+                return "";
+        }
+
+        protected bool IsCommandButtonVisibile(string userId)
+        {
+            if (!Request.IsAuthenticated) return false;
+            if (GetUserRole(UserId) == "Admin") return true;
+            else
+            {
+                if (userId == UserId)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        protected void btnDeletePlace_Click(object sender, EventArgs e)
+        {
+            LinkButton myButton = (LinkButton)sender;
+            int idPlace = Convert.ToInt32(myButton.CommandArgument.ToString());
+            PlacesManager.DeletePlace(idPlace);
+            lwPlaces.DataBind();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Business.Managers
             using (var db = new EntitiesContext())
             {
                 // Also check if confirmed
-                return db.Places.Where(x => x.IdCity == cityId && x.Rating >= rating && x.AveragePrice >= minPrice && x.AveragePrice<=maxPrice && x.Confirmed==true).ToList();
+                return db.Places.Where(x => x.IdCity == cityId && x.Rating >= rating && x.AveragePrice >= minPrice && x.AveragePrice<=maxPrice && x.Confirmed==true).OrderByDescending(x=>x.IdPlace).ToList();
             }
         }
 
@@ -92,12 +92,18 @@ namespace Business.Managers
             {
                 List<PlacesReview> reviews = db.PlacesReviews.Where(x => x.IdPlace == idPlace).ToList();
                 int sum = 0;
+                float ratingFloat =1.0F;
+                int rating = 1;
                 foreach (var review in reviews)
                 {
                     sum = sum + review.Rating;
                 }
-                float ratingFloat = (float)sum / reviews.Count;
-                int rating = (int)Math.Round(ratingFloat);
+                if (sum != 0)
+                {
+                    ratingFloat = (float)sum / reviews.Count;
+                    rating = (int)Math.Round(ratingFloat, MidpointRounding.AwayFromZero);
+                }
+                
                 Place place = db.Places.SingleOrDefault(x => x.IdPlace == idPlace);
                 place.Rating = rating;
                 place.RatingFloat = Convert.ToDouble(ratingFloat.ToString("0.0"));
@@ -149,6 +155,46 @@ namespace Business.Managers
             using (var db = new EntitiesContext())
             {
                 db.PlacesPhotos.Add(photo);
+                db.SaveChanges();
+            }
+        }
+
+        public static void DeletePlace(int idPlace)
+        {
+            using (var db = new EntitiesContext())
+            {
+                var searches = db.UserSearchHistories.Where(x => x.IdPlace == idPlace).ToList();
+                if (searches != null)
+                {
+                    foreach (var search in searches)
+                    {
+                        db.UserSearchHistories.Remove(search);
+                    }
+                    db.SaveChanges();
+                }
+
+                var placesPhotos = db.PlacesPhotos.Where(x => x.IdPlace == idPlace).ToList();
+                if (placesPhotos != null)
+                {
+                    foreach (var photo in placesPhotos)
+                    {
+                        db.PlacesPhotos.Remove(photo);
+                    }
+                    db.SaveChanges();
+                }
+                
+                var reviews = db.PlacesReviews.Where(x => x.IdPlace == idPlace).ToList();
+                if (reviews != null)
+                {
+                    foreach (var review in reviews)
+                    {
+                        db.PlacesReviews.Remove(review);
+                    }
+                    db.SaveChanges();
+                }
+
+                var place = db.Places.Where(x => x.IdPlace == idPlace).SingleOrDefault();
+                db.Places.Remove(place);
                 db.SaveChanges();
             }
         }

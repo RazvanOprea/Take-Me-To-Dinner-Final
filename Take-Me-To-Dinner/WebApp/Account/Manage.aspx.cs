@@ -335,6 +335,7 @@ namespace WebApp.Account
                     PlacesManager.AddPlacePhoto(photo);
                 }
             }
+            Response.Redirect("~/Pages/ShowPlaces.aspx?cityId=" + place.IdCity);
         }
     }
 }

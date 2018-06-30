@@ -4,7 +4,7 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-<link rel="stylesheet" href="../Content/ShowPlaces.css?version=38" />
+<link rel="stylesheet" href="../Content/ShowPlaces.css?version=40" />
 <script type="text/javascript">
     function pageLoad() {
         $('.body-content').hide().show();
@@ -69,7 +69,7 @@
                             Minimum="1" Maximum="5" Length=220 HandleImageUrl="~/Content/Images/TrackBarHandle.png" HandleCssClass="myhandle"/>
                     </div>
                     <div class="col-sm-2 col-xs-3">
-                        <asp:TextBox runat="server" ID="ratingText" Width="30" Text="1" BackColor="#f88e1d" ForeColor="White" BorderStyle="None" />
+                        <asp:TextBox runat="server" ID="ratingText" Width="30" BackColor="#f88e1d" ForeColor="White" BorderStyle="None" />
                     </div>
                 </div>
             </div>
@@ -92,6 +92,7 @@
           <ItemTemplate>
               <li>
                   <div class="results-item">
+                     
                       <div class="row">
                           <div class="col-sm-5 col-xs-12">
                               <asp:Image runat="server" ID="imgPlace" ImageUrl=<%# Eval("Photo") %> CssClass="picture" />
@@ -124,6 +125,17 @@
                                   <div class="col-sm-4 col-xs-12">
                                       <span class="grey">TYPE</span>
                                       <asp:Label runat="server" ID="lblType" Text='<%#Item.Type %>'></asp:Label>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-sm-1 col-xs-6">
+                                      <asp:LinkButton runat="server" ID="btnModifyPlace" Text="Edit" Font-Bold="true" CssClass="center"
+                                          Visible='<%# IsCommandButtonVisibile(Eval("IdPartner").ToString()) %>'/>
+                                  </div>
+                                  <div class="col-sm-2 col-xs-6">
+                                    <asp:LinkButton runat="server" ID="btnDeletePlace" Text="Delete" ForeColor="Red" Font-Bold="true" CssClass="center"
+                                          Visible='<%# IsCommandButtonVisibile(Eval("IdPartner").ToString()) %>' CommandArgument='<%#Item.IdPlace %>'
+                                          OnClick="btnDeletePlace_Click"/>
                                   </div>
                               </div>
                           </div>
