@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Manage Account" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="WebApp.Account.Manage" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -8,45 +9,6 @@
         function pageLoad() {
             $('.body-content').hide().show();
         }
-        var validFilesTypes = ["bmp", "gif", "png", "jpg", "jpeg"];
-
-        function ValidateFile() {
-
-            var file = document.getElementById("<%=PlaceUploadPhoto.ClientID%>");
-
-        var label = document.getElementById("<%=lblPlaceUploadPhoto%>");
-
-        var path = file.value;
-
-        var ext = path.substring(path.lastIndexOf(".") + 1, path.length).toLowerCase();
-
-        var isValidFile = false;
-
-        for (var i = 0; i < validFilesTypes.length; i++) {
-
-            if (ext == validFilesTypes[i]) {
-
-                isValidFile = true;
-
-                break;
-
-            }
-
-        }
-
-        if (!isValidFile) {
-
-            label.style.color = "red";
-
-            label.innerHTML = "Invalid File. Please upload a File with" +
-
-                " extension:\n\n" + validFilesTypes.join(", ");
-
-        }
-
-        return isValidFile;
-
-    }
     </script>
     <div class="container main-container">
         <br />
@@ -312,6 +274,11 @@
                                 <asp:Label runat="server" ID="lblPlaceUploadPhotosMessage" />
                             </div>
                         </div>
+                        <%--<div class="row">
+                            <div class="col-sm-5 col-sm-offset-1">
+                                <asp:Image runat="server" ID="imgPlaceUploadPhotoPreview" Width="150px" Height="100px" />
+                            </div>
+                        </div>--%>
                         <br />
                         <div class="row">
                             <div class="col-sm-3 col-sm-offset-1">

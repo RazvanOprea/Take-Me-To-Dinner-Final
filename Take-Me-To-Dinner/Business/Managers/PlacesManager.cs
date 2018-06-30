@@ -127,5 +127,14 @@ namespace Business.Managers
             }
         }
 
+        public static void AddPlace(Place place)
+        {
+            using (var db = new EntitiesContext())
+            {
+                db.Places.Add(place);
+                db.SaveChanges();
+            }
+        }
+
     }
 }

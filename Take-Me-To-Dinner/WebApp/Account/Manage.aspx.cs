@@ -249,8 +249,26 @@ namespace WebApp.Account
             manager.SendEmail(GetAdminId(), "Partnership", "User " + UserEmail + " made a partner request.");
         }
 
+
         protected void btnAddPlace_Click(object sender, EventArgs e)
         {
+            Place place = new Place();
+            place.Type = ddlPlaceTypes.SelectedItem.Text;
+            place.IdCity = Convert.ToInt32(ddlPlaceCities.SelectedItem.Value);
+            place.Name = PlaceName.Text;
+            place.Adress = PlaceAdress.Text;
+            place.Telephone = PlaceTelephone.Text;
+            place.Website = PlaceWebsite.Text;
+            place.Rating = 1;
+            place.RatingFloat = 1;
+            place.AveragePrice = Convert.ToInt32(PlaceAveragePrice.Text);
+            if (PlaceLat.Text != null) place.Lat = PlaceLat.Text;
+            if (PlaceLong.Text != null) place.Long = PlaceLong.Text;
+            place.OpenTime = TimeSpan.Parse(PlaceOpenTime.Text.ToString());
+            place.CloseTime = TimeSpan.Parse(PlaceCloseTime.Text.ToString());
+            place.Confirmed = true;
+            place.IdPartner = UserId;
+            place.Description = PlaceDescription.Text;
             // Check file exist or not  
             if (PlaceUploadPhoto.PostedFile != null)
             {
@@ -260,11 +278,10 @@ namespace WebApp.Account
                 {
                     Stream strm = PlaceUploadPhoto.PostedFile.InputStream;
                     using (var image = System.Drawing.Image.FromStream(strm))
-                    {
-                        // Print Original Size of file (Height or Width)   
-                        
-                        int newWidth = 240; // New Width of Image in Pixel  
-                        int newHeight = 240; // New Height of Image in Pixel  
+                    { 
+                        // Resize image
+                        int newWidth = 1500; // New Width of Image in Pixel  
+                        int newHeight = 1000; // New Height of Image in Pixel  
                         var thumbImg = new Bitmap(newWidth, newHeight);
                         var thumbGraph = Graphics.FromImage(thumbImg);
                         thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
@@ -273,15 +290,14 @@ namespace WebApp.Account
                         var imgRectangle = new Rectangle(0, 0, newWidth, newHeight);
                         thumbGraph.DrawImage(image, imgRectangle);
                         // Save the file  
-                        string targetPath = Server.MapPath(@"~\Content\Images\Places\") + PlaceUploadPhoto.FileName;
+                        string filename = Guid.NewGuid().ToString() + extension;
+                        string targetPath = Server.MapPath(@"~\Content\Images\Places\" + filename) ;
+                        place.Photo = "~/Content/Images/Places/" + filename;
                         thumbImg.Save(targetPath, image.RawFormat);
-                        // Print new Size of file (height or Width)  
-                        //Label2.Text = thumbImg.Size.ToString();
-                        //Show Image  
-                        //Image1.ImageUrl = @"~\Images\" + PlaceUploadPhoto.FileName;
                     }
                 }
             }
+            PlacesManager.AddPlace(place);
         }
     }
 }
