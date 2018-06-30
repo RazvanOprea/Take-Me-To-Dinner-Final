@@ -179,7 +179,7 @@
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtReview" CssClass="text-danger" ErrorMessage="Review is required." Display="Dynamic"
                                             ValidationGroup="groupReview"/>
                 <asp:RegularExpressionValidator runat="server" ControlToValidate="txtReview" CssClass="text-danger" ErrorMessage="Review must be between 10 and 200 alphanumeric characters." Display="Dynamic" 
-                    ValidationExpression="^[a-zA-Z0-9\s]{10,200}$" ValidationGroup="groupReview"/>
+                    ValidationExpression="^[a-zA-Z0-9\s!,.?]{10,200}$" ValidationGroup="groupReview"/>
             </div>
             <div class="col-sm-12 col-xs-12">
                 <asp:Label runat="server" ID="ErrorMessage" Visible="false" CssClass="text-danger"></asp:Label>

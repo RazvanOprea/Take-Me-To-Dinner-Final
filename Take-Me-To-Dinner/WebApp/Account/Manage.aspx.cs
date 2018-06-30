@@ -290,7 +290,7 @@ namespace WebApp.Account
                         var imgRectangle = new Rectangle(0, 0, newWidth, newHeight);
                         thumbGraph.DrawImage(image, imgRectangle);
                         // Save the file  
-                        string filename = Guid.NewGuid().ToString() + extension;
+                        string filename = place.Name + Guid.NewGuid().ToString() + extension;
                         string targetPath = Server.MapPath(@"~\Content\Images\Places\" + filename) ;
                         place.Photo = "~/Content/Images/Places/" + filename;
                         thumbImg.Save(targetPath, image.RawFormat);
@@ -325,7 +325,7 @@ namespace WebApp.Account
                             var imgRectangle = new Rectangle(0, 0, newWidth, newHeight);
                             thumbGraph.DrawImage(image, imgRectangle);
                             // Save the file  
-                            string filename = Guid.NewGuid().ToString() + extension;
+                            string filename = place.Name + Guid.NewGuid().ToString() + extension;
                             photo.Name = filename;
                             string targetPath = Server.MapPath(@"~\Content\Images\PlacesPhotos\" + filename);
                             photo.Path = "~/Content/Images/PlacesPhotos/" + filename;

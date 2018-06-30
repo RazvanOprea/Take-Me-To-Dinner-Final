@@ -199,5 +199,22 @@ namespace Business.Managers
             }
         }
 
+        public static List<string> GetAllPhotoPaths(int idPlace)
+        {
+            List<string> paths = new List<string>();
+            using (var db = new EntitiesContext())
+            {
+                string placePhoto = db.Places.SingleOrDefault(x => x.IdPlace == idPlace).Photo;
+                paths.Add(placePhoto);
+
+                var photos = db.PlacesPhotos.Where(x => x.IdPlace == idPlace).ToList();
+                foreach (var photo in photos)
+                {
+                    paths.Add(photo.Path);
+                }
+            }
+            return paths;
+        }
+
     }
 }

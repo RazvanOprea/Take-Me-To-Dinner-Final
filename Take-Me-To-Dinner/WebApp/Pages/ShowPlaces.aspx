@@ -144,7 +144,8 @@
                           <div class="col-sm-5 col-xs-12">
                               <div class="center">
                                   <asp:Label runat="server" ID="lblRating" Text="CUSTOMER RATING" CssClass="rating-text grey"></asp:Label>
-                                  <asp:Image runat="server" ID="imgRating" ImageUrl='<%# Eval("Rating", "~/Content/Images/Rating/Rating{0}.png") %>' CssClass="rating-picture"/>
+                                  <asp:Image runat="server" ID="imgRating" ImageUrl='<%# Eval("Rating", "~/Content/Images/Rating/Rating{0}.png") %>' CssClass="rating-picture"
+                                      ToolTip='<%#Eval("RatingFloat") %>'/>
                               </div>
                           </div>
                           <div class="col-sm-4 col-sm-offset-3 col-xs-12">

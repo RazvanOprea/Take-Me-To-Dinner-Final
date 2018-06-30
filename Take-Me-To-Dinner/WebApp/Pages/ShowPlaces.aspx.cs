@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -109,8 +110,22 @@ namespace WebApp
         {
             LinkButton myButton = (LinkButton)sender;
             int idPlace = Convert.ToInt32(myButton.CommandArgument.ToString());
+            List<string> paths = PlacesManager.GetAllPhotoPaths(idPlace);
+            DeletePhotos(paths);
             PlacesManager.DeletePlace(idPlace);
             lwPlaces.DataBind();
+        }
+        
+        protected void DeletePhotos(List<string> paths)
+        {
+            foreach (string path in paths)
+            {
+                var filePath = Server.MapPath(path);
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+            }
         }
     }
 }
