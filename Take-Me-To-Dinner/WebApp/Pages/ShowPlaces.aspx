@@ -129,8 +129,11 @@
                               </div>
                               <div class="row">
                                   <div class="col-sm-1 col-xs-6">
+                                      <%-- Removed modify due to bugs
+                                          Visible='<%# IsCommandButtonVisibile(Eval("IdPartner").ToString()) %>'
+                                      --%>
                                       <asp:LinkButton runat="server" ID="btnModifyPlace" Text="Edit" Font-Bold="true" CssClass="center"
-                                          Visible='<%# IsCommandButtonVisibile(Eval("IdPartner").ToString()) %>'/>
+                                          Visible="false"/>
                                   </div>
                                   <div class="col-sm-2 col-xs-6">
                                     <asp:LinkButton runat="server" ID="btnDeletePlace" Text="Delete" ForeColor="Red" Font-Bold="true" CssClass="center"
